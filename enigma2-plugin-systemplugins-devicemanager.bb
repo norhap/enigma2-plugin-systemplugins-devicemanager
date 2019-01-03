@@ -1,11 +1,13 @@
 DESCRIPTION = "Device manager for storage devices (format/change partitions and type/fast & fixed mount and umount)"
 HOMEPAGE = "https://github.com/Dima73/enigma2-plugin-systemplugins-devicemanager"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://README.md;md5=f2744f11077590f84608b54169c8b35d"
-SRC_URI = "git://github.com/Dima73/enigma2-plugin-systemplugins-devicemanager.git"
+LIC_FILES_CHKSUM = "file://README.md;md5=fa931694f4579578b39587f7ca837042"
+
+SRC_URI = "git://github.com/satdreamgr/enigma2-plugin-systemplugins-devicemanager.git"
+SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
-RRECOMMENDS_${PN} = "e2fsprogs-e2fsck e2fsprogs-mke2fs ntfsprogs hddtemp dosfstools e2fsprogs util-linux-sfdisk exfat-fuse exfat-utils"
+RRECOMMENDS_${PN} = "dosfstools e2fsprogs e2fsprogs-e2fsck e2fsprogs-mke2fs exfat-utils fuse-exfat hddtemp ntfsprogs util-linux-sfdisk"
 
 inherit gitpkgv
 
