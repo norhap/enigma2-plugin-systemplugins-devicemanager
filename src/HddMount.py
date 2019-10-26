@@ -42,6 +42,7 @@ class HddMountDevice(Screen):
 
 	def __init__(self, session, device, partition):
 		Screen.__init__(self, session)
+		self.setTitle(_("Mount points"))
 
 		self.device = device
 		self.partition = partition
@@ -72,16 +73,11 @@ class HddMountDevice(Screen):
 		self["key_yellow"] = Button("")
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"blue": self.quit,
+			"blue": self.close,
 			"green": self.green,
 			"red": self.ok,
-			"cancel": self.quit,
+			"cancel": self.close,
 		}, -2)
-
-		self.onShown.append(self.setWindowTitle)
-
-	def setWindowTitle(self):
-		self.setTitle(_("Mount points"))
 
 	def ok(self):
 		self.fast = False
@@ -183,8 +179,7 @@ class HddMountDevice(Screen):
 			if not self.fast:
 				msg = _("Changing fixed mounted drive requires a system restart in order to take effect. ")
 				msg += _("Do you want to restart your receiver now?")
-				mbox = self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO)
-				mbox.setTitle(_("Restart receiver"))
+				self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO, title=_("Restart receiver"))
 			else:
 				self.close()
 
@@ -193,9 +188,6 @@ class HddMountDevice(Screen):
 			self.session.open(TryQuitMainloop, 2)
 		else:
 			self.close()
-
-	def quit(self):
-		self.close()
 
 def MountEntry(description, details):
 	picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/diskusb.png"));
@@ -225,6 +217,7 @@ class HddFastRemove(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.setTitle(_("Fast Mounted Remove"))
 		self.refreshMP(False)
 
 		self["menu"] = List(self.disks)
@@ -232,15 +225,10 @@ class HddFastRemove(Screen):
 		self["key_blue"] = Button(_("Exit"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"blue": self.quit,
+			"blue": self.close,
 			"red": self.red,
-			"cancel": self.quit,
+			"cancel": self.close,
 		}, -2)
-
-		self.onShown.append(self.setWindowTitle)
-
-	def setWindowTitle(self):
-		self.setTitle(_("Fast Mounted Remove"))
 
 	def red(self):
 		if len(self.mounts) > 0:
@@ -277,6 +265,3 @@ class HddFastRemove(Screen):
 						self.mounts.append(rmp)
 		if uirefresh:
 			self["menu"].setList(self.disks)
-
-	def quit(self):
-		self.close()

@@ -5,7 +5,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.ConfigList import ConfigListScreen
-from Components.config import ConfigSelection, getConfigListEntry, config
+from Components.config import getConfigListEntry, config
 import os
 import re
 
@@ -31,6 +31,7 @@ class HddInfo(ConfigListScreen, Screen):
 
 	def __init__(self, session, device, deviceinfo):
 		Screen.__init__(self, session)
+		self.setTitle(_("Device details"))
 		self.device = device
 		self.deviceinfo = deviceinfo
 		self.list = []
@@ -58,10 +59,6 @@ class HddInfo(ConfigListScreen, Screen):
 		}, -2)
 
 		self.onLayoutFinish.append(self.drawInfo)
-		self.onShown.append(self.setWindowTitle)
-
-	def setWindowTitle(self):
-		self.setTitle(_("Device details"))
 
 	def drawInfo(self):
 		device = "/dev/%s" % self.device

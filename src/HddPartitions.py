@@ -52,9 +52,8 @@ class HddPartitions(Screen):
 		</screen>"""
 
 	def __init__(self, session, disk):
-		self.session = session
-
 		Screen.__init__(self, session)
+		self.setTitle(_("Partitions"))
 		self.disk = disk
 		self.refreshMP(False)
 
@@ -67,14 +66,12 @@ class HddPartitions(Screen):
 		self["label_disk"] = Label("%s - %s" % (self.disk[0], self.disk[3]))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"red": self.quit,
+			"red": self.close,
 			"yellow": self.yellow,
 			"green": self.green,
 			"blue": self.blue,
-			"cancel": self.quit,
+			"cancel": self.close,
 		}, -2)
-
-		self.onShown.append(self.setWindowTitle)
 
 		if len(self.disk[5]) > 0:
 			if self.disk[5][0][3] == "83" or self.disk[5][0][3] == "7" or self.disk[5][0][3] == "b" or self.disk[5][0][3] == "c":
@@ -89,9 +86,6 @@ class HddPartitions(Screen):
 				else:
 					self.mounted = False
 					self["key_blue"].setText(_("Mount"))
-
-	def setWindowTitle(self):
-		self.setTitle(_("Partitions"))
 
 	def selectionChanged(self):
 		self["key_green"].setText("")
@@ -262,6 +256,3 @@ class HddPartitions(Screen):
 				self.refreshMP()
 			else:
 				self.session.openWithCallback(self.refreshMP, HddMountDevice, self.disk[0], self.sindex+1)
-
-	def quit(self):
-		self.close()

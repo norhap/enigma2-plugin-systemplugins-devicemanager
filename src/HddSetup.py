@@ -58,8 +58,8 @@ class HddSetup(Screen):
 		</screen>"""
 
 	def __init__(self, session, args=0):
-		self.session = session
 		Screen.__init__(self, session)
+		self.setTitle(_("Storage device manager"))
 		self.disks = list()
 		self.mdisks = Disks()
 		self.asHDD = False
@@ -79,13 +79,9 @@ class HddSetup(Screen):
 			"blue": self.blue,
 			"yellow": self.yellow,
 			"green": self.green,
-			"red": self.quit,
-			"cancel": self.quit,
+			"red": self.close,
+			"cancel": self.close,
 		}, -2)
-		self.onShown.append(self.setWindowTitle)
-
-	def setWindowTitle(self):
-		self.setTitle(_("Storage device manager"))
 
 	def isExt4Supported(self):
 		return "ext4" in open("/proc/filesystems").read()
@@ -113,8 +109,7 @@ class HddSetup(Screen):
 			os.system("mkdir -p /media/hdd/movie")
 			msg = _("Initializing fixed mounted drive requires a system restart in order to take effect. ")
 			msg += _("Do you want to restart your receiver now?")
-			mbox = self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO)
-			mbox.setTitle(_("Restart receiver"))
+			self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO, title=_("Restart receiver"))
 
 	def restartBox(self, answer):
 		if answer is True:
@@ -161,7 +156,7 @@ class HddSetup(Screen):
 	def fdisk(self):
 		return self.mdisks.fdisk(self.mdisks.disks[self.sindex][0], self.mdisks.disks[self.sindex][1], self.result, self.fsresult)
 
-	def initialaze(self, result):
+	def initialize(self, result):
 		if not self.isExt4Supported():
 			result += 1
 		if result != 6:
@@ -177,7 +172,7 @@ class HddSetup(Screen):
 		if result != 5:
 			self.result = result
 			if self.isExt4Supported():
-				self.session.openWithCallback(self.initialaze, ExtraMessageBox, _("Format as"), _("Partitioner"),
+				self.session.openWithCallback(self.initialize, ExtraMessageBox, _("Format as"), _("Partitioner"),
 											[ [ "Ext4", "partitionmanager.png" ],
 											[ "Ext3", "partitionmanager.png" ],
 											[ "Ext2", "partitionmanager.png" ],
@@ -187,7 +182,7 @@ class HddSetup(Screen):
 											[ _("Cancel"), "cancel.png" ],
 											], 1, 6)
 			else:
-				self.session.openWithCallback(self.initialaze, ExtraMessageBox, _("Format as"), _("Partitioner"),
+				self.session.openWithCallback(self.initialize, ExtraMessageBox, _("Format as"), _("Partitioner"),
 											[ [ "Ext3", "partitionmanager.png" ],
 											[ "Ext2", "partitionmanager.png" ],
 											[ "NTFS", "partitionmanager.png" ],
@@ -203,10 +198,10 @@ class HddSetup(Screen):
 				if ret:
 					if ret[1] == "as_hdd":
 						self.asHDD = True
-					self.yellowAswer()
+					self.yellowAnswer()
 			self.session.openWithCallback(extraOption, ChoiceBox, title=_("Initialize as HDD?"), list=list)
 
-	def yellowAswer(self):
+	def yellowAnswer(self):
 		if sfdisk and len(self.mdisks.disks) > 0:
 			self.sindex = self['menu'].getIndex()
 			msg = _("Please select your preferred configuration. ")
@@ -233,6 +228,3 @@ class HddSetup(Screen):
 				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			else:
 				self.session.open(HddPartitions, self.mdisks.disks[self.sindex])
-
-	def quit(self):
-		self.close()
