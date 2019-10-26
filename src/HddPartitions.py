@@ -17,10 +17,6 @@ from MountPoints import MountPoints
 from HddMount import HddMountDevice
 import os
 
-FULLHD = False
-if getDesktop(0).size().width() >= 1920:
-	FULLHD = True
-
 sfdisk = os.path.exists('/usr/sbin/sfdisk')
 
 def PartitionEntry(description, size):
@@ -29,33 +25,8 @@ def PartitionEntry(description, size):
 	return (picture, description, size)
 
 class HddPartitions(Screen):
-	if FULLHD:
-		skin = """
-		<screen name="HddPartitions" position="center,center" size="560,430" title="Hard Drive Partitions">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget name="label_disk" position="20,45" font="Regular;20" halign="center" size="520,25" valign="center" />
-			<widget source="menu" render="Listbox" position="10,75" size="540,350" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-						MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
-						MultiContentEntryText(pos = (65, 10), size = (375, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-						MultiContentEntryText(pos = (435, 10), size = (125, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
-						],
-						"fonts": [gFont("Regular", 18)],
-						"itemHeight": 50
-					}
-				</convert>
-			</widget>
-		</screen>"""
-	else:
-		skin = """
+
+	skin = """
 		<screen name="HddPartitions" position="center,center" size="560,430" title="Hard Drive Partitions">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />

@@ -20,10 +20,6 @@ from ExtraActionBox import ExtraActionBox
 from MountPoints import MountPoints
 import os
 
-FULLHD = False
-if getDesktop(0).size().width() >= 1920:
-	FULLHD = True
-
 sfdisk = os.path.exists('/usr/sbin/sfdisk')
 
 def DiskEntry(model, size, removable, rotational, internal):
@@ -36,32 +32,8 @@ def DiskEntry(model, size, removable, rotational, internal):
 	return (picture, model, size)
 
 class HddSetup(Screen):
-	if FULLHD:
-		skin = """
-		<screen name="HddSetup" position="center,center" size="560,430" title="Hard Drive Setup">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget source="menu" render="Listbox" position="20,45" size="520,380" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-						MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
-						MultiContentEntryText(pos = (65, 10), size = (330, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-						MultiContentEntryText(pos = (405, 10), size = (125, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
-						],
-						"fonts": [gFont("Regular", 22)],
-						"itemHeight": 50
-					}
-				</convert>
-			</widget>
-		</screen>"""
-	else:
-		skin = """
+
+	skin = """
 		<screen name="HddSetup" position="center,center" size="560,430" title="Hard Drive Setup">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />

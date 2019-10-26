@@ -1,6 +1,5 @@
 # for localized messages
 from . import _
-from enigma import getDesktop
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -10,31 +9,9 @@ from Components.config import ConfigSelection, getConfigListEntry, config
 import os
 import re
 
-FULLHD = False
-if getDesktop(0).size().width() >= 1920:
-	FULLHD = True
-
 class HddInfo(ConfigListScreen, Screen):
-	if FULLHD:
-		skin = """
-		<screen name="HddInfo" position="center,center" size="560,430" title="Hard Drive Info">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget font="Regular;18" halign="left" name="model" position="20,45" size="540,25" valign="center" />
-			<widget font="Regular;18" halign="left" name="serial" position="20,75" size="540,25" valign="center" />
-			<widget font="Regular;18" halign="left" name="firmware" position="20,105" size="540,25" valign="center" />
-			<widget font="Regular;18" halign="left" name="cylinders" position="20,135" size="540,25" valign="center" />
-			<widget font="Regular;18" halign="left" name="heads" position="20,165" size="540,25" valign="center" />
-			<widget font="Regular;18" halign="left" name="sectors" position="20,195" size="540,25" valign="center" />
-			<widget font="Regular;18" halign="left" name="readDisk" position="20,225" size="540,25" valign="center" />
-			<widget font="Regular;18" halign="left" name="readCache" position="20,255" size="540,25" valign="center" />
-			<widget font="Regular;18" halign="left" name="temp" position="20,285" size="540,25" valign="center" />
-			<widget name="config" position="20,325" scrollbarMode="showOnDemand" size="540,30" />
-		</screen>"""
-	else:
-		skin = """
+
+	skin = """
 		<screen name="HddInfo" position="center,center" size="560,430" title="Hard Drive Info">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
