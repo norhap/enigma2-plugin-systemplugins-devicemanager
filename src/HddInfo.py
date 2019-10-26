@@ -59,7 +59,7 @@ class HddInfo(ConfigListScreen, Screen):
 		self.list = []
 		text = " "
 		if self.deviceinfo[2] and not self.deviceinfo[6]:
-			self.list.append(getConfigListEntry(_("Harddisk standby after"), config.usage.hdd_standby))
+			self.list.append(getConfigListEntry(_("Hard disk standby after"), config.usage.hdd_standby))
 			text = _("Save")
 		ConfigListScreen.__init__(self, self.list)
 		self["key_green"] = Button(text)
@@ -84,7 +84,7 @@ class HddInfo(ConfigListScreen, Screen):
 		self.onShown.append(self.setWindowTitle)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Device Details"))
+		self.setTitle(_("Device details"))
 
 	def drawInfo(self):
 		device = "/dev/%s" % self.device

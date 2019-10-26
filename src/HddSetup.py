@@ -113,7 +113,7 @@ class HddSetup(Screen):
 		self.onShown.append(self.setWindowTitle)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Device Manager"))
+		self.setTitle(_("Storage device manager"))
 
 	def isExt4Supported(self):
 		return "ext4" in open("/proc/filesystems").read()
@@ -139,9 +139,10 @@ class HddSetup(Screen):
 			mp.write()
 			mp.mount(self.mdisks.disks[self.sindex][0], 1, "/media/hdd")
 			os.system("mkdir -p /media/hdd/movie")
-			message = _("Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\nRestart your STB now?")
-			mbox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-			mbox.setTitle(_("Restart STB"))
+			msg = _("Initializing fixed mounted drive requires a system restart in order to take effect. ")
+			msg += _("Do you want to restart your receiver now?")
+			mbox = self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO)
+			mbox.setTitle(_("Restart receiver"))
 
 	def restartBox(self, answer):
 		if answer is True:
@@ -149,7 +150,8 @@ class HddSetup(Screen):
 
 	def format(self, result):
 		if result != 0:
-			self.session.open(MessageBox, _("Cannot format partition %d") % (self.formatted), MessageBox.TYPE_ERROR)
+			msg = _("Formatting partition %d failed!") % (self.formatted)
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		if self.result == 0:
 			if self.formatted > 0:
 				self.checkDefault()
@@ -170,13 +172,17 @@ class HddSetup(Screen):
 				self.checkDefault()
 				self.refresh()
 				return
-		self.session.openWithCallback(self.format, ExtraActionBox, _("Formatting partition %d") % (self.formatted + 1), _("Initialize disk"), self.mkfs)
+		msg = _("Formatting partition %d") % (self.formatted + 1)
+		self.session.openWithCallback(self.format, ExtraActionBox, msg, _("Initialize disk"), self.mkfs)
 
 	def fdiskEnded(self, result):
 		if result == 0:
 			self.format(0)
 		elif result == -1:
-			self.session.open(MessageBox, _("Cannot umount current device.\nA record in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem.\nPlease stop this actions/applications and try again"), MessageBox.TYPE_ERROR)
+			msg = _("Unmounting current drive failed! ")
+			msg += _("A recording in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem. ")
+			msg += _("Please stop these processes or applications and try again.")
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		else:
 			self.session.open(MessageBox, _("Partitioning failed!"), MessageBox.TYPE_ERROR)
 
@@ -226,17 +232,19 @@ class HddSetup(Screen):
 					if ret[1] == "as_hdd":
 						self.asHDD = True
 					self.yellowAswer()
-			self.session.openWithCallback(extraOption, ChoiceBox, title = _("Initialize") + _(" as HDD ?"),list = list)
+			self.session.openWithCallback(extraOption, ChoiceBox, title=_("Initialize as HDD?"), list=list)
 
 	def yellowAswer(self):
 		if sfdisk and len(self.mdisks.disks) > 0:
 			self.sindex = self['menu'].getIndex()
-			self.session.openWithCallback(self.chooseFSType, ExtraMessageBox, _("Please select your preferred configuration.") + "\n" + _("Or use standard 'Harddisk Setup' to initialize your drive in ext4."), _("Partitioner"),
+			msg = _("Please select your preferred configuration. ")
+			msg += _("Alternatively you can use the standard 'Hard disk setup' to initialize your drive in ext4.")
+			self.session.openWithCallback(self.chooseFSType, ExtraMessageBox, msg, _("Partitioner"),
 										[ [ _("One partition"), "partitionmanager.png" ],
-										[ _("Two partitions (50% - 50%)"), "partitionmanager.png" ],
-										[ _("Two partitions (75% - 25%)"), "partitionmanager.png" ],
-										[ _("Three partitions (33% - 33% - 33%)"), "partitionmanager.png" ],
-										[ _("Four partitions (25% - 25% - 25% - 25%)"), "partitionmanager.png" ],
+										[ _("Two partitions") + " (50% - 50%)", "partitionmanager.png" ],
+										[ _("Two partitions") + " (75% - 25%)", "partitionmanager.png" ],
+										[ _("Three partitions") + " (33% - 33% - 33%)", "partitionmanager.png" ],
+										[ _("Four partitions") + " (25% - 25% - 25% - 25%)", "partitionmanager.png" ],
 										[ _("Cancel"), "cancel.png" ],
 										], 1, 5)
 
@@ -249,7 +257,8 @@ class HddSetup(Screen):
 		if len(self.mdisks.disks) > 0:
 			self.sindex = self['menu'].getIndex()
 			if len(self.mdisks.disks[self.sindex][5]) == 0:
-				self.session.open(MessageBox, _("You need to initialize your storage device first"), MessageBox.TYPE_ERROR)
+				msg = _("You need to initialize your storage device first.")
+				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			else:
 				self.session.open(HddPartitions, self.mdisks.disks[self.sindex])
 

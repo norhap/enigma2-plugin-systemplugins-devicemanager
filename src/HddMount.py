@@ -68,17 +68,17 @@ class HddMountDevice(Screen):
 
 		self.list = []
 		self.list.append(_("Mount as main hdd"))
-		self.list.append(_("Mount as /media/hdd1"))
-		self.list.append(_("Mount as /media/hdd2"))
-		self.list.append(_("Mount as /media/hdd3"))
-		self.list.append(_("Mount as /media/hdd4"))
-		self.list.append(_("Mount as /media/hdd5"))
-		self.list.append(_("Mount as /media/usb"))
-		self.list.append(_("Mount as /media/usb1"))
-		self.list.append(_("Mount as /media/usb2"))
-		self.list.append(_("Mount as /media/usb3"))
-		self.list.append(_("Mount as /media/usb4"))
-		self.list.append(_("Mount as /media/usb5"))
+		self.list.append(_("Mount as %s") % ("/media/hdd1"))
+		self.list.append(_("Mount as %s") % ("/media/hdd2"))
+		self.list.append(_("Mount as %s") % ("/media/hdd3"))
+		self.list.append(_("Mount as %s") % ("/media/hdd4"))
+		self.list.append(_("Mount as %s") % ("/media/hdd5"))
+		self.list.append(_("Mount as %s") % ("/media/usb"))
+		self.list.append(_("Mount as %s") % ("/media/usb1"))
+		self.list.append(_("Mount as %s") % ("/media/usb2"))
+		self.list.append(_("Mount as %s") % ("/media/usb3"))
+		self.list.append(_("Mount as %s") % ("/media/usb4"))
+		self.list.append(_("Mount as %s") % ("/media/usb5"))
 		self.list.append(_("Mount on custom path"))
 
 		self["menu"] = MenuList(self.list)
@@ -98,7 +98,7 @@ class HddMountDevice(Screen):
 		self.onShown.append(self.setWindowTitle)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Mountpoints"))
+		self.setTitle(_("Mount points"))
 
 	def ok(self):
 		self.fast = False
@@ -128,7 +128,7 @@ class HddMountDevice(Screen):
 		elif selected == 11:
 			self.setMountPoint("/media/usb5")
 		elif selected == 12:
-			self.session.openWithCallback(self.customPath, VirtualKeyBoard, title = (_("Insert mount point:")), text = _("/media/custom"))
+			self.session.openWithCallback(self.customPath, VirtualKeyBoard, title=_("Insert mount point:"), text="/media/custom")
 
 	def green(self):
 		self.fast = True
@@ -158,7 +158,7 @@ class HddMountDevice(Screen):
 		elif selected == 11:
 			self.setMountPoint("/media/usb5")
 		elif selected == 12:
-			self.session.openWithCallback(self.customPath, VirtualKeyBoard, title = (_("Insert mount point:")), text = _("/media/custom"))
+			self.session.openWithCallback(self.customPath, VirtualKeyBoard, title=_("Insert mount point:"), text="/media/custom")
 
 	def customPath(self, result):
 		if result and len(result) > 0:
@@ -180,7 +180,10 @@ class HddMountDevice(Screen):
 		if result == 0:
 			if self.mountpoints.isMounted(self.cpath):
 				if not self.mountpoints.umount(self.cpath):
-					self.session.open(MessageBox, _("Cannot umount current drive.\nA record in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem.\nPlease stop this actions/applications and try again"), MessageBox.TYPE_ERROR)
+					msg = _("Unmounting current drive failed! ")
+					msg += _("A recording in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem. ")
+					msg += _("Please stop these processes or applications and try again.")
+					self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 					self.close()
 					return
 			self.mountpoints.delete(self.cpath)
@@ -188,14 +191,17 @@ class HddMountDevice(Screen):
 				self.mountpoints.add(self.device, self.partition, self.cpath)
 			self.mountpoints.write()
 			if not self.mountpoints.mount(self.device, self.partition, self.cpath):
-				self.session.open(MessageBox, _("Cannot mount new drive.\nPlease check filesystem or format it and try again"), MessageBox.TYPE_ERROR)
+				msg = _("Mounting new drive failed! ")
+				msg += _("Please check the filesystem or format it and try again.")
+				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			elif self.cpath == "/media/hdd":
 				os.system("mkdir -p /media/hdd/movie")
 
 			if not self.fast:
-				message = _("Device Fixed Mount Point change needs a system restart in order to take effect.\nRestart your STB now?")
-				mbox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-				mbox.setTitle(_("Restart STB"))
+				msg = _("Changing fixed mounted drive requires a system restart in order to take effect. ")
+				msg += _("Do you want to restart your receiver now?")
+				mbox = self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO)
+				mbox.setTitle(_("Restart receiver"))
 			else:
 				self.close()
 
@@ -277,7 +283,10 @@ class HddFastRemove(Screen):
 		if len(self.mounts) > 0:
 			self.sindex = self["menu"].getIndex()
 			self.mountpoints.umount(self.mounts[self.sindex]) # actually umount device here - also check both cases possible - for instance error case also check with stay in /e.g. /media/usb folder on telnet
-			self.session.open(MessageBox, _("Fast mounted Media unmounted.\nYou can safely remove the Device now, if no further Partitions (displayed as P.x on Devicelist - where x >=2) are mounted on the same Device.\nPlease unmount Fixed Mounted Devices with Device Manager Panel!"), MessageBox.TYPE_INFO)
+			msg = _("Fast mounted media unmounted successfully. ")
+			msg += _("You can safely remove the device now, if there are no other mounted partitions from it. ")
+			msg += _("Please unmount fixed mounted devices with 'Storage device manager' panel.")
+			self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 			self.refreshMP(True)
 
 	def refreshMP(self, uirefresh=True):

@@ -126,12 +126,12 @@ class HddPartitions(Screen):
 		self["key_green"].setText("")
 		self["key_yellow"].setText("")
 		self["key_blue"].setText("")
-		
+
 		if len(self.disk[5]) > 0:
 			index = self["menu"].getIndex()
 			if self.disk[5][index][3] == "83" or self.disk[5][index][3] == "7" or self.disk[5][index][3] == "b" or self.disk[5][index][3] == "c":
 				self["key_blue"].setText(_("Check"))
-				if sfdisk: 
+				if sfdisk:
 					self["key_yellow"].setText(_("Format"))
 				mp = self.mountpoints.get(self.disk[0], index+1)
 				rmp = self.mountpoints.getRealMount(self.disk[0], index+1)
@@ -146,21 +146,31 @@ class HddPartitions(Screen):
 		disks = Disks()
 		ret = disks.chkfs(self.disk[5][self.index][0][:3], self.index+1, self.fstype)
 		if ret == 0:
-			self.session.open(MessageBox, _("Check disk terminated with success"), MessageBox.TYPE_INFO)
+			msg = _("Disk check completed successfully.")
+			self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 		elif ret == -1:
-			self.session.open(MessageBox, _("Cannot umount current drive.\nA record in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem.\nPlease stop this actions/applications and try again"), MessageBox.TYPE_ERROR)
+			msg = _("Unmounting current drive failed! ")
+			msg += _("A recording in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem. ")
+			msg += _("Please stop these processes or applications and try again.")
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		else:
-			self.session.open(MessageBox, _("Error checking disk. The disk may be damaged"), MessageBox.TYPE_ERROR)
+			msg = _("Error checking disk. The disk may be damaged!")
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 
 	def mkfs(self):
 		disks = Disks()
 		ret = disks.mkfs(self.disk[5][self.index][0][:3], self.index+1, self.fstype)
 		if ret == 0:
-			self.session.open(MessageBox, _("Format terminated with success"), MessageBox.TYPE_INFO)
+			msg = _("Format completed successfully.")
+			self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 		elif ret == -2:
-			self.session.open(MessageBox, _("Cannot format current drive.\nA record in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem.\nPlease stop this actions/applications and try again"), MessageBox.TYPE_ERROR)
+			msg = _("Formatting current drive failed! ")
+			msg += _("A recording in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem. ")
+			msg += _("Please stop these processes or applications and try again.")
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		else:
-			self.session.open(MessageBox, _("Error formatting disk. The disk may be damaged"), MessageBox.TYPE_ERROR)
+			msg = _("Error formatting disk. The disk may be damaged!")
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 
 	def isExt4Supported(self):
 		return "ext4" in open("/proc/filesystems").read()
@@ -170,19 +180,23 @@ class HddPartitions(Screen):
 			if self.isExt4Supported():
 				if result < 3:
 					self.fstype = result
-					self.session.open(ExtraActionBox, _("Formatting disk %s") % self.disk[5][self.index][0], _("Formatting disk"), self.mkfs)
+					msg = _("Formatting disk %s") % self.disk[5][self.index][0]
+					self.session.open(ExtraActionBox, msg, _("Formatting disk"), self.mkfs)
 			else:
 				if result < 2:
 					self.fstype = result == 0 and 1 or 2
-					self.session.open(ExtraActionBox, _("Formatting disk %s") % self.disk[5][self.index][0], _("Formatting disk"), self.mkfs)
+					msg = _("Formatting disk %s") % self.disk[5][self.index][0]
+					self.session.open(ExtraActionBox, msg, _("Formatting disk"), self.mkfs)
 		elif self.disk[5][self.index][3] == "7":
 			if result < 2:
 				self.fstype = result == 0 and 3 or 4
-				self.session.open(ExtraActionBox, _("Formatting disk %s") % self.disk[5][self.index][0], _("Formatting disk"), self.mkfs)
+				msg = _("Formatting disk %s") % self.disk[5][self.index][0]
+				self.session.open(ExtraActionBox, msg, _("Formatting disk"), self.mkfs)
 		elif self.disk[5][self.index][3] == "b" or self.disk[5][self.index][3] == "c":
 			if result < 1:
 				self.fstype = 5
-				self.session.open(ExtraActionBox, _("Formatting disk %s") % self.disk[5][self.index][0], _("Formatting disk"), self.mkfs)
+				msg = _("Formatting disk %s") % self.disk[5][self.index][0]
+				self.session.open(ExtraActionBox, msg, _("Formatting disk"), self.mkfs)
 
 	def green(self):
 		if len(self.disk[5]) > 0:
@@ -195,7 +209,8 @@ class HddPartitions(Screen):
 					self.fstype = 2
 				elif self.disk[5][index][3] == "b" or self.disk[5][index][3] == "c":
 					self.fstype = 3
-				self.session.open(ExtraActionBox, _("Checking disk %s") % self.disk[5][index][0], _("Checking disk"), self.chkfs)
+				msg = _("Checking disk %s") % self.disk[5][index][0]
+				self.session.open(ExtraActionBox, msg, _("Checking disk"), self.chkfs)
 
 	def yellow(self):
 		if sfdisk and len(self.disk[5]) > 0:
@@ -264,7 +279,10 @@ class HddPartitions(Screen):
 							self.mountpoints.delete(mp)
 							self.mountpoints.write()
 						else:
-							self.session.open(MessageBox, _("Cannot umount current device.\nA record in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem.\nPlease stop this actions/applications and try again"), MessageBox.TYPE_ERROR)
+							msg = _("Unmounting current drive failed! ")
+							msg += _("A recording in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem. ")
+							msg += _("Please stop these processes or applications and try again.")
+							self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 					else:
 						self.mountpoints.delete(mp)
 						self.mountpoints.write()
