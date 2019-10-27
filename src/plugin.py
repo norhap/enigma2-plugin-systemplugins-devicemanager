@@ -19,12 +19,12 @@ def deviceManagerMain(session, **kwargs):
 def deviceManagerSetup(menuid, **kwargs):
 	if menuid != "system":
 		return []
-	return [(_("Device Manager"), deviceManagerMain, "device_manager", None)]
+	return [(_("Storage device manager"), deviceManagerMain, "device_manager", None)]
 
 def deviceManagerFastRemove(session, **kwargs):
 	session.open(HddFastRemove)
 
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = _("Device Manager"), description = _("Format/Partition your Devices and manage Mountpoints"), where = PluginDescriptor.WHERE_MENU, fnc = deviceManagerSetup),
-			PluginDescriptor(name = _("Device Manager - Fast Mounted Remove"), description = _("Quick and safe remove for your mounted devices "), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = deviceManagerFastRemove)]
+	return [PluginDescriptor(name=_("Storage device manager"), description=_("Format and partition your storage devives and manage mount points"), where=PluginDescriptor.WHERE_MENU, fnc=deviceManagerSetup),
+			PluginDescriptor(name=_("Fast mounted drives removal"), description=_("Quickly and safely remove storage devices"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=deviceManagerFastRemove)]

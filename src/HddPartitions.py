@@ -119,7 +119,8 @@ class HddPartitions(Screen):
 			msg += _("Please stop these processes or applications and try again.")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		else:
-			msg = _("Error checking disk. The disk may be damaged!")
+			msg = _("Error checking disk. ")
+			msg += _("The disk may be damaged!")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 
 	def mkfs(self):
@@ -134,7 +135,8 @@ class HddPartitions(Screen):
 			msg += _("Please stop these processes or applications and try again.")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		else:
-			msg = _("Error formatting disk. The disk may be damaged!")
+			msg = _("Error formatting disk. ")
+			msg += _("The disk may be damaged!")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 
 	def isExt4Supported(self):
@@ -146,22 +148,22 @@ class HddPartitions(Screen):
 				if result < 3:
 					self.fstype = result
 					msg = _("Formatting disk %s") % self.disk[5][self.index][0]
-					self.session.open(ExtraActionBox, msg, _("Formatting disk"), self.mkfs)
+					self.session.open(ExtraActionBox, msg, _("Disk format"), self.mkfs)
 			else:
 				if result < 2:
 					self.fstype = result == 0 and 1 or 2
 					msg = _("Formatting disk %s") % self.disk[5][self.index][0]
-					self.session.open(ExtraActionBox, msg, _("Formatting disk"), self.mkfs)
+					self.session.open(ExtraActionBox, msg, _("Disk format"), self.mkfs)
 		elif self.disk[5][self.index][3] == "7":
 			if result < 2:
 				self.fstype = result == 0 and 3 or 4
 				msg = _("Formatting disk %s") % self.disk[5][self.index][0]
-				self.session.open(ExtraActionBox, msg, _("Formatting disk"), self.mkfs)
+				self.session.open(ExtraActionBox, msg, _("Disk format"), self.mkfs)
 		elif self.disk[5][self.index][3] == "b" or self.disk[5][self.index][3] == "c":
 			if result < 1:
 				self.fstype = 5
 				msg = _("Formatting disk %s") % self.disk[5][self.index][0]
-				self.session.open(ExtraActionBox, msg, _("Formatting disk"), self.mkfs)
+				self.session.open(ExtraActionBox, msg, _("Disk format"), self.mkfs)
 
 	def green(self):
 		if len(self.disk[5]) > 0:
@@ -175,7 +177,7 @@ class HddPartitions(Screen):
 				elif self.disk[5][index][3] == "b" or self.disk[5][index][3] == "c":
 					self.fstype = 3
 				msg = _("Checking disk %s") % self.disk[5][index][0]
-				self.session.open(ExtraActionBox, msg, _("Checking disk"), self.chkfs)
+				self.session.open(ExtraActionBox, msg, _("Disk check"), self.chkfs)
 
 	def yellow(self):
 		if sfdisk and len(self.disk[5]) > 0:
@@ -216,11 +218,11 @@ class HddPartitions(Screen):
 			mp = self.mountpoints.get(self.disk[0], count)
 			rmp = self.mountpoints.getRealMount(self.disk[0], count)
 			if len(mp) > 0:
-				self.partitions.append(PartitionEntry(_("P. %d - %s (Fixed: %s)") % (count, part[2], mp), capacity))
+				self.partitions.append(PartitionEntry(_("Partition %d - %s (fixed mounted: %s)") % (count, part[2], mp), capacity))
 			elif len(rmp) > 0:
-				self.partitions.append(PartitionEntry(_("P. %d - %s (Fast: %s)") % (count, part[2], rmp), capacity))
+				self.partitions.append(PartitionEntry(_("Partition %d - %s (fast mounted: %s)") % (count, part[2], rmp), capacity))
 			else:
-				self.partitions.append(PartitionEntry("P. %d - %s" % (count, part[2]), capacity))
+				self.partitions.append(PartitionEntry(_("Partition %d - %s") % (count, part[2]), capacity))
 			count += 1
 
 		if uirefresh:

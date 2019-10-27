@@ -51,7 +51,7 @@ class HddMountDevice(Screen):
 		self.fast = False
 
 		self.list = []
-		self.list.append(_("Mount as main hdd"))
+		self.list.append(_("Mount as %s") % ("/media/hdd"))
 		self.list.append(_("Mount as %s") % ("/media/hdd1"))
 		self.list.append(_("Mount as %s") % ("/media/hdd2"))
 		self.list.append(_("Mount as %s") % ("/media/hdd3"))
@@ -148,8 +148,8 @@ class HddMountDevice(Screen):
 	def setMountPoint(self, path):
 		self.cpath = path
 		if self.mountpoints.exist(path):
-			self.session.openWithCallback(self.setMountPointCb, ExtraMessageBox, _("Selected mount point is already used by another drive."), _("Mount point exist!"),
-																[ [ _("Change old drive with this new drive"), "ok.png" ],
+			self.session.openWithCallback(self.setMountPointCb, ExtraMessageBox, _("Selected mount point is already used by another drive."), _("Mount point exists!"),
+																[ [ _("Replace existing drive with the new one"), "ok.png" ],
 																[ _("Keep old drive"), "cancel.png" ],
 																])
 		else:
@@ -177,7 +177,7 @@ class HddMountDevice(Screen):
 				os.system("mkdir -p /media/hdd/movie")
 
 			if not self.fast:
-				msg = _("Changing fixed mounted drive requires a system restart in order to take effect. ")
+				msg = _("Changes in fixed mounted drives require a system restart. ")
 				msg += _("Do you want to restart your receiver now?")
 				self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO, title=_("Restart receiver"))
 			else:
@@ -217,7 +217,7 @@ class HddFastRemove(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setTitle(_("Fast Mounted Remove"))
+		self.setTitle(_("Fast mounted drives removal"))
 		self.refreshMP(False)
 
 		self["menu"] = List(self.disks)
@@ -234,9 +234,9 @@ class HddFastRemove(Screen):
 		if len(self.mounts) > 0:
 			self.sindex = self["menu"].getIndex()
 			self.mountpoints.umount(self.mounts[self.sindex]) # actually umount device here - also check both cases possible - for instance error case also check with stay in /e.g. /media/usb folder on telnet
-			msg = _("Fast mounted media unmounted successfully. ")
-			msg += _("You can safely remove the device now, if there are no other mounted partitions from it. ")
-			msg += _("Please unmount fixed mounted devices with 'Storage device manager' panel.")
+			msg = _("Fast mounted media removed successfully. ")
+			msg += _("You can safely unplug the device now, if there are no other mounted partitions from it. ")
+			msg += _("Please remove fixed mounted devices with 'Storage device manager' panel.")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 			self.refreshMP(True)
 
@@ -258,10 +258,10 @@ class HddFastRemove(Screen):
 					except Exception, e:
 						pass
 					if len(mp) > 0:
-						self.disks.append(MountEntry(disk[3], _("P.%s (Fixed: %s)") % (partition[0][3:], mp)))
+						self.disks.append(MountEntry(disk[3], _("Partition %s (fixed mounted: %s)") % (partition[0][3:], mp)))
 						self.mounts.append(mp)
 					elif len(rmp) > 0:
-						self.disks.append(MountEntry(disk[3], _("P.%s (Fast: %s)") % (partition[0][3:], rmp)))
+						self.disks.append(MountEntry(disk[3], _("Partition %s (fast mounted: %s)") % (partition[0][3:], rmp)))
 						self.mounts.append(rmp)
 		if uirefresh:
 			self["menu"].setList(self.disks)

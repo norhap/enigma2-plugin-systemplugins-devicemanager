@@ -107,7 +107,7 @@ class HddSetup(Screen):
 			mp.write()
 			mp.mount(self.mdisks.disks[self.sindex][0], 1, "/media/hdd")
 			os.system("mkdir -p /media/hdd/movie")
-			msg = _("Initializing fixed mounted drive requires a system restart in order to take effect. ")
+			msg = _("Initialization of fixed mounted drives require a system restart. ")
 			msg += _("Do you want to restart your receiver now?")
 			self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO, title=_("Restart receiver"))
 
@@ -140,7 +140,7 @@ class HddSetup(Screen):
 				self.refresh()
 				return
 		msg = _("Formatting partition %d") % (self.formatted + 1)
-		self.session.openWithCallback(self.format, ExtraActionBox, msg, _("Initialize disk"), self.mkfs)
+		self.session.openWithCallback(self.format, ExtraActionBox, msg, _("Disk initialization"), self.mkfs)
 
 	def fdiskEnded(self, result):
 		if result == 0:
