@@ -15,7 +15,6 @@ from Screens.Standby import TryQuitMainloop
 from HddPartitions import HddPartitions
 from HddInfo import HddInfo
 from Disks import Disks
-from ExtraMessageBox import ExtraMessageBox
 from ExtraActionBox import ExtraActionBox
 from MountPoints import MountPoints
 import os
@@ -109,7 +108,7 @@ class HddSetup(Screen):
 			os.system("mkdir -p /media/hdd/movie")
 			msg = _("Initialization of fixed mounted drives require a system restart. ")
 			msg += _("Do you want to restart your receiver now?")
-			self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO, title=_("Restart receiver"))
+			self.session.openWithCallback(self.restartBox, MessageBox, msg, title=_("Restart receiver"))
 
 	def restartBox(self, answer):
 		if answer is True:
@@ -157,10 +156,8 @@ class HddSetup(Screen):
 		return self.mdisks.fdisk(self.mdisks.disks[self.sindex][0], self.mdisks.disks[self.sindex][1], self.result, self.fsresult)
 
 	def initialize(self, result):
-		if not self.isExt4Supported():
-			result += 1
-		if result != 6:
-			self.fsresult = result
+		if result is not None:
+			self.fsresult = int(result[1])
 			self.formatted = 0
 			mp = MountPoints()
 			mp.read()
@@ -169,51 +166,33 @@ class HddSetup(Screen):
 			self.session.openWithCallback(self.fdiskEnded, ExtraActionBox, _("Partitioning..."), _("Initialize disk"), self.fdisk)
 
 	def chooseFSType(self, result):
-		if result != 5:
-			self.result = result
+		if result is not None:
+			self.result = int(result[1])
+			choicelist = [("Ext3", "1"), ("Ext2", "2"), ("NTFS", "3"), ("exFAT", "4"), ("Fat32", "5")]
 			if self.isExt4Supported():
-				self.session.openWithCallback(self.initialize, ExtraMessageBox, _("Format as"), _("Partitioner"),
-											[ [ "Ext4", "partitionmanager.png" ],
-											[ "Ext3", "partitionmanager.png" ],
-											[ "Ext2", "partitionmanager.png" ],
-											[ "NTFS", "partitionmanager.png" ],
-											[ "exFAT", "partitionmanager.png" ],
-											[ "Fat32", "partitionmanager.png" ],
-											[ _("Cancel"), "cancel.png" ],
-											], 1, 6)
-			else:
-				self.session.openWithCallback(self.initialize, ExtraMessageBox, _("Format as"), _("Partitioner"),
-											[ [ "Ext3", "partitionmanager.png" ],
-											[ "Ext2", "partitionmanager.png" ],
-											[ "NTFS", "partitionmanager.png" ],
-											[ "exFAT", "partitionmanager.png" ],
-											[ "Fat32", "partitionmanager.png" ],
-											[ _("Cancel"), "cancel.png" ],
-											], 1, 5)
+				choicelist.insert(0, ("Ext4", "0"))
+			self.session.openWithCallback(self.initialize, ChoiceBox, title=_("Please select a file system for the drive"), list=choicelist)
+
+	def yellowAnswer(self):
+		if sfdisk and len(self.mdisks.disks) > 0:
+			self.sindex = self['menu'].getIndex()
+			choicelist = [(_("One partition"), "0")]
+			choicelist.append((_("Two partitions") + " (50% - 50%)", "1"))
+			choicelist.append((_("Two partitions") + " (75% - 25%)", "2"))
+			choicelist.append((_("Three partitions") + " (33% - 33% - 33%)", "3"))
+			choicelist.append((_("Four partitions") + " (25% - 25% - 25% - 25%)", "4"))
+			self.session.openWithCallback(self.chooseFSType, ChoiceBox, title=_("Please select your preferred configuration"), list=choicelist)
+
 	def yellow(self):
 		self.asHDD = False
 		if sfdisk and len(self.mdisks.disks) > 0:
-			list = [(_("No - simple"), "simple"), (_("Yes - fstab entry as /media/hdd"), "as_hdd")]
+			choicelist = [(_("No - simple"), "simple"), (_("Yes - fstab entry as /media/hdd"), "as_hdd")]
 			def extraOption(ret):
 				if ret:
 					if ret[1] == "as_hdd":
 						self.asHDD = True
 					self.yellowAnswer()
-			self.session.openWithCallback(extraOption, ChoiceBox, title=_("Initialize as HDD?"), list=list)
-
-	def yellowAnswer(self):
-		if sfdisk and len(self.mdisks.disks) > 0:
-			self.sindex = self['menu'].getIndex()
-			msg = _("Please select your preferred configuration. ")
-			msg += _("Alternatively you can use the standard 'Hard disk setup' to initialize your drive in ext4.")
-			self.session.openWithCallback(self.chooseFSType, ExtraMessageBox, msg, _("Partitioner"),
-										[ [ _("One partition"), "partitionmanager.png" ],
-										[ _("Two partitions") + " (50% - 50%)", "partitionmanager.png" ],
-										[ _("Two partitions") + " (75% - 25%)", "partitionmanager.png" ],
-										[ _("Three partitions") + " (33% - 33% - 33%)", "partitionmanager.png" ],
-										[ _("Four partitions") + " (25% - 25% - 25% - 25%)", "partitionmanager.png" ],
-										[ _("Cancel"), "cancel.png" ],
-										], 1, 5)
+			self.session.openWithCallback(extraOption, ChoiceBox, title=_("Initialize as HDD?"), list=choicelist)
 
 	def green(self):
 		if len(self.mdisks.disks) > 0:

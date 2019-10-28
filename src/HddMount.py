@@ -1,6 +1,5 @@
 # for localized messages
 from . import _
-
 from enigma import *
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
@@ -17,11 +16,8 @@ from Components.Label import Label
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
-
 from MountPoints import MountPoints
 from Disks import Disks
-from ExtraMessageBox import ExtraMessageBox
-
 import os
 import re
 
@@ -148,15 +144,14 @@ class HddMountDevice(Screen):
 	def setMountPoint(self, path):
 		self.cpath = path
 		if self.mountpoints.exist(path):
-			self.session.openWithCallback(self.setMountPointCb, ExtraMessageBox, _("Selected mount point is already used by another drive."), _("Mount point exists!"),
-																[ [ _("Replace existing drive with the new one"), "ok.png" ],
-																[ _("Keep old drive"), "cancel.png" ],
-																])
+			msg = _("Selected mount point is already used by another drive. ")
+			msg += _("Do you want to replace the existing drive with the new one?")
+			self.session.openWithCallback(self.setMountPointCb, MessageBox, msg, default=False, title=_("Mount point already exists"))
 		else:
-			self.setMountPointCb(0)
+			self.setMountPointCb(True)
 
 	def setMountPointCb(self, result):
-		if result == 0:
+		if result is True: # replace drive
 			if self.mountpoints.isMounted(self.cpath):
 				if not self.mountpoints.umount(self.cpath):
 					msg = _("Unmounting current drive failed! ")
@@ -179,7 +174,7 @@ class HddMountDevice(Screen):
 			if not self.fast:
 				msg = _("Changes in fixed mounted drives require a system restart. ")
 				msg += _("Do you want to restart your receiver now?")
-				self.session.openWithCallback(self.restartBox, MessageBox, msg, MessageBox.TYPE_YESNO, title=_("Restart receiver"))
+				self.session.openWithCallback(self.restartBox, MessageBox, msg, title=_("Restart receiver"))
 			else:
 				self.close()
 
@@ -258,10 +253,10 @@ class HddFastRemove(Screen):
 					except Exception, e:
 						pass
 					if len(mp) > 0:
-						self.disks.append(MountEntry(disk[3], _("Partition %s (fixed mounted: %s)") % (partition[0][3:], mp)))
+						self.disks.append(MountEntry(disk[3], _("Partition {0} (fixed mounted: {1})").format(partition[0][3:], mp)))
 						self.mounts.append(mp)
 					elif len(rmp) > 0:
-						self.disks.append(MountEntry(disk[3], _("Partition %s (fast mounted: %s)") % (partition[0][3:], rmp)))
+						self.disks.append(MountEntry(disk[3], _("Partition {0} (fast mounted: {1})").format(partition[0][3:], rmp)))
 						self.mounts.append(rmp)
 		if uirefresh:
 			self["menu"].setList(self.disks)

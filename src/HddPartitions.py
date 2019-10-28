@@ -8,11 +8,10 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
 from Components.Button import Button
 from Components.Label import Label
+from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-
 from Disks import Disks
 from ExtraActionBox import ExtraActionBox
-from ExtraMessageBox import ExtraMessageBox
 from MountPoints import MountPoints
 from HddMount import HddMountDevice
 import os
@@ -142,29 +141,6 @@ class HddPartitions(Screen):
 	def isExt4Supported(self):
 		return "ext4" in open("/proc/filesystems").read()
 
-	def domkfs(self, result):
-		if self.disk[5][self.index][3] == "83":
-			if self.isExt4Supported():
-				if result < 3:
-					self.fstype = result
-					msg = _("Formatting disk %s") % self.disk[5][self.index][0]
-					self.session.open(ExtraActionBox, msg, _("Disk format"), self.mkfs)
-			else:
-				if result < 2:
-					self.fstype = result == 0 and 1 or 2
-					msg = _("Formatting disk %s") % self.disk[5][self.index][0]
-					self.session.open(ExtraActionBox, msg, _("Disk format"), self.mkfs)
-		elif self.disk[5][self.index][3] == "7":
-			if result < 2:
-				self.fstype = result == 0 and 3 or 4
-				msg = _("Formatting disk %s") % self.disk[5][self.index][0]
-				self.session.open(ExtraActionBox, msg, _("Disk format"), self.mkfs)
-		elif self.disk[5][self.index][3] == "b" or self.disk[5][self.index][3] == "c":
-			if result < 1:
-				self.fstype = 5
-				msg = _("Formatting disk %s") % self.disk[5][self.index][0]
-				self.session.open(ExtraActionBox, msg, _("Disk format"), self.mkfs)
-
 	def green(self):
 		if len(self.disk[5]) > 0:
 			index = self["menu"].getIndex()
@@ -182,31 +158,23 @@ class HddPartitions(Screen):
 	def yellow(self):
 		if sfdisk and len(self.disk[5]) > 0:
 			self.index = self["menu"].getIndex()
+			choicelist = []
 			if self.disk[5][self.index][3] == "83":
+				choicelist = [("Ext3", "1"), ("Ext2", "2")]
 				if self.isExt4Supported():
-					self.session.openWithCallback(self.domkfs, ExtraMessageBox, _("Format as"), _("Partitioner"),
-												[ [ "Ext4", "partitionmanager.png" ],
-												[ "Ext3", "partitionmanager.png" ],
-												[ "Ext2", "partitionmanager.png" ],
-												[ _("Cancel"), "cancel.png" ],
-												], 1, 3)
-				else:
-					self.session.openWithCallback(self.domkfs, ExtraMessageBox, _("Format as"), _("Partitioner"),
-												[ [ "Ext3", "partitionmanager.png" ],
-												[ "Ext2", "partitionmanager.png" ],
-												[ _("Cancel"), "cancel.png" ],
-												], 1, 2)
+					choicelist.insert(0, ("Ext4", "0"))
 			elif self.disk[5][self.index][3] == "7":
-				self.session.openWithCallback(self.domkfs, ExtraMessageBox, _("Format as"), _("Partitioner"),
-											[ [ "NTFS", "partitionmanager.png" ],
-											[ "exFAT", "partitionmanager.png" ],
-											[ _("Cancel"), "cancel.png" ],
-											], 1, 2)
+				choicelist = [("NTFS", "3"), ("exFAT", "4")]
 			elif self.disk[5][self.index][3] == "b" or self.disk[5][self.index][3] == "c":
-				self.session.openWithCallback(self.domkfs, ExtraMessageBox, _("Format as"), _("Partitioner"),
-											[ [ "Fat32", "partitionmanager.png" ],
-											[ _("Cancel"), "cancel.png" ],
-											], 1, 1)
+				choicelist = [("Fat32", "5")]
+
+			def domkfs(result):
+				if result is not None:
+					self.fstype = int(result[1])
+					msg = _("Formatting disk %s") % self.disk[5][self.index][0]
+					self.session.open(ExtraActionBox, msg, _("Disk format"), self.mkfs)
+
+			self.session.openWithCallback(domkfs, ChoiceBox, title=_("Please select a file system for the partition"), list=choicelist)
 
 	def refreshMP(self, uirefresh=True):
 		self.partitions = []
@@ -218,11 +186,11 @@ class HddPartitions(Screen):
 			mp = self.mountpoints.get(self.disk[0], count)
 			rmp = self.mountpoints.getRealMount(self.disk[0], count)
 			if len(mp) > 0:
-				self.partitions.append(PartitionEntry(_("Partition %d - %s (fixed mounted: %s)") % (count, part[2], mp), capacity))
+				self.partitions.append(PartitionEntry(_("Partition {0} - {1} (fixed mounted: {2})").format(count, part[2], mp), capacity))
 			elif len(rmp) > 0:
-				self.partitions.append(PartitionEntry(_("Partition %d - %s (fast mounted: %s)") % (count, part[2], rmp), capacity))
+				self.partitions.append(PartitionEntry(_("Partition {0} - {1} (fast mounted: {2})").format(count, part[2], rmp), capacity))
 			else:
-				self.partitions.append(PartitionEntry(_("Partition %d - %s") % (count, part[2]), capacity))
+				self.partitions.append(PartitionEntry(_("Partition {0} - {1}").format(count, part[2]), capacity))
 			count += 1
 
 		if uirefresh:
