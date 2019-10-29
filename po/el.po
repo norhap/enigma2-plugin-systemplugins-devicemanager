@@ -1,0 +1,419 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-29 16:38+0200\n"
+"PO-Revision-Date: 2019-10-29 16:40+0200\n"
+"Last-Translator: \n"
+"Language-Team: SatDreamGr\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: HddInfo.py:34
+msgid "Device details"
+msgstr "Λεπτομέρειες συσκευής"
+
+#: HddInfo.py:40
+msgid "Hard disk standby after"
+msgstr "Σκληρός δίσκος σε αναμονή μετά από"
+
+#: HddInfo.py:41
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: HddInfo.py:44 HddMount.py:68 HddMount.py:220 HddPartitions.py:61
+#: HddSetup.py:69
+msgid "Exit"
+msgstr "Έξοδος"
+
+#: HddInfo.py:45
+msgid "Model: unknown"
+msgstr "Μοντέλο: άγνωστο"
+
+#: HddInfo.py:46
+msgid "Serial: unknown"
+msgstr "Σειριακός αριθμός: άγνωστο"
+
+#: HddInfo.py:47
+msgid "Firmware: unknown"
+msgstr "Υλικολογισμικό: άγνωστο"
+
+#: HddInfo.py:48
+msgid "Cylinders: unknown"
+msgstr "Κύλινδροι: άγνωστο"
+
+#: HddInfo.py:49
+msgid "Heads: unknown"
+msgstr "Κεφαλές: άγνωστο"
+
+#: HddInfo.py:50
+msgid "Sectors: unknown"
+msgstr "Τομείς: άγνωστο"
+
+#: HddInfo.py:51
+msgid "Read disk speed: unknown"
+msgstr "Ταχύτητα ανάγνωσης δίσκου: άγνωστο"
+
+#: HddInfo.py:52
+msgid "Read disk cache speed: unknown"
+msgstr "Ταχύτητα ανάγνωσης cache: άγνωστο"
+
+#: HddInfo.py:53
+msgid "Disk temperature: unknown"
+msgstr "Θερμοκρασία: άγνωστο"
+
+#: HddInfo.py:83
+#, python-format
+msgid "Model: %s"
+msgstr "Μοντέλο: %s"
+
+#: HddInfo.py:86
+#, python-format
+msgid "Serial: %s"
+msgstr "Σειριακός αριθμός: %s"
+
+#: HddInfo.py:89
+#, python-format
+msgid "Firmware: %s"
+msgstr "Υλικολογισμικό: %s"
+
+#: HddInfo.py:92
+#, python-format
+msgid "Cylinders: %s (max) %s (current)"
+msgstr "Κύλινδροι: %s (μέγιστο) %s (τρέχον)"
+
+#: HddInfo.py:95
+#, python-format
+msgid "Heads: %s (max) %s (current)"
+msgstr "Κεφαλές: %s (μέγιστο) %s (τρέχον)"
+
+#: HddInfo.py:98
+#, python-format
+msgid "Sectors: %s (max) %s (current)"
+msgstr "Τομείς: %s (μέγιστο) %s (τρέχον)"
+
+#: HddInfo.py:104
+#, python-format
+msgid "Read speed: %s"
+msgstr "Ταχύτητα ανάγνωσης δίσκου: %s"
+
+#: HddInfo.py:110
+#, python-format
+msgid "Read cache speed: %s"
+msgstr "Ταχύτητα ανάγνωσης cache: %s"
+
+#: HddInfo.py:116
+#, python-format
+msgid "Disk temperature: %s"
+msgstr "Θερμοκρασία: %s"
+
+#: HddMount.py:41
+msgid "Mount points"
+msgstr "Σημεία προσάρτησης"
+
+#: HddMount.py:50 HddMount.py:51 HddMount.py:52 HddMount.py:53 HddMount.py:54
+#: HddMount.py:55 HddMount.py:56 HddMount.py:57 HddMount.py:58 HddMount.py:59
+#: HddMount.py:60 HddMount.py:61
+#, python-format
+msgid "Mount as %s"
+msgstr "Προσάρτηση ως %s"
+
+#: HddMount.py:62
+msgid "Mount on custom path"
+msgstr "Προσάρτηση σε προσαρμοσμένη διαδρομή"
+
+#: HddMount.py:66
+msgid "Fixed mount"
+msgstr "Σταθερή προσάρτηση"
+
+#: HddMount.py:67
+msgid "Fast mount"
+msgstr "Γρήγορη προσάρτηση"
+
+#: HddMount.py:106 HddMount.py:136
+msgid "Insert mount point:"
+msgstr "Ορισμός σημείου προσάρτησης:"
+
+#: HddMount.py:147
+msgid "Selected mount point is already used by another drive. "
+msgstr ""
+"Το επιλεγμένο σημείο προσάρτησης χρησιμοποιείται ήδη από άλλη συσκευή. "
+
+#: HddMount.py:148
+msgid "Do you want to replace the existing drive with the new one?"
+msgstr "Θέλετε να αντικαταστήσετε τον υπάρχοντα δίσκο με τον νέο;"
+
+#: HddMount.py:149
+msgid "Mount point already exists"
+msgstr "Το σημείο προσάρτησης υπάρχει ήδη"
+
+#: HddMount.py:157 HddPartitions.py:116 HddPartitions.py:217 HddSetup.py:148
+msgid "Unmounting current drive failed! "
+msgstr "Δεν είναι δυνατή η αποπροσάρτηση του τρέχοντα δίσκου! "
+
+#: HddMount.py:158 HddPartitions.py:117 HddPartitions.py:133
+#: HddPartitions.py:218 HddSetup.py:149
+msgid ""
+"A recording in progress, timeshift or some external tools (like samba, "
+"swapfile and nfsd) may cause this problem. "
+msgstr ""
+"Μια εγγραφή ή χρονομετατόπιση βρίσκεται σε εξέλιξη ή κάποιο εξωτερικό "
+"εργαλείο (όπως samba, swap, nfsd) μπορεί να προκαλεί αυτό το πρόβλημα. "
+
+#: HddMount.py:159 HddPartitions.py:118 HddPartitions.py:134
+#: HddPartitions.py:219 HddSetup.py:150
+msgid "Please stop these processes or applications and try again."
+msgstr ""
+"Παρακαλούμε σταματήστε τις παραπάνω δραστηριότητες ή εφαρμογές και "
+"προσπαθήστε ξανά."
+
+#: HddMount.py:168
+msgid "Mounting new drive failed! "
+msgstr "Δεν είναι δυνατή η προσάρτηση του νέου δίσκου! "
+
+#: HddMount.py:169
+msgid "Please check the filesystem or format it and try again."
+msgstr ""
+"Παρακαλούμε ελέγξτε το σύστημα αρχείων ή διαμορφώστε τον και προσπαθήστε "
+"ξανά."
+
+#: HddMount.py:175
+msgid "Changes in fixed mounted drives require a system restart. "
+msgstr ""
+"Οι αλλαγές σε σταθερά προσαρτημένες συσκευές απαιτούν την επανεκκίνηση του "
+"συστήματος. "
+
+#: HddMount.py:176 HddSetup.py:110
+msgid "Do you want to restart your receiver now?"
+msgstr "Θέλετε να γίνει επανεκκίνηση του δέκτη σας τώρα;"
+
+#: HddMount.py:177 HddSetup.py:111
+msgid "Restart receiver"
+msgstr "Επανεκκίνηση δέκτη"
+
+#: HddMount.py:215 plugin.py:30
+msgid "Fast mounted drives removal"
+msgstr "Αφαίρεση γρήγορα προσαρτημένων συσκευών"
+
+#: HddMount.py:219 HddPartitions.py:84 HddPartitions.py:104
+msgid "Unmount"
+msgstr "Αποπροσάρτηση"
+
+#: HddMount.py:232
+msgid "Fast mounted media removed successfully. "
+msgstr "Η γρήγορα προσαρτημένη συσκευή αφαιρέθηκε με επιτυχία. "
+
+#: HddMount.py:233
+msgid ""
+"You can safely unplug the device now, if there are no other mounted "
+"partitions from it. "
+msgstr ""
+"Μπορείτε να αποσυνδέσετε τη συσκευή με ασφάλεια, αν δεν υπάρχουν άλλα "
+"προσαρτημένα διαμερίσματα από αυτήν. "
+
+#: HddMount.py:234
+msgid ""
+"Please remove fixed mounted devices with 'Storage device manager' panel."
+msgstr ""
+"Παρακαλούμε αφαιρέστε τις σταθερά προσαρτημένες συσκευές μέσω της "
+"'Διαχείρισης μέσων αποθήκευσης'."
+
+#: HddMount.py:256
+#, python-brace-format
+msgid "Partition {0} (fixed mounted: {1})"
+msgstr "Διαμέρισμα {0} (σταθερή προσάρτηση: {1})"
+
+#: HddMount.py:259
+#, python-brace-format
+msgid "Partition {0} (fast mounted: {1})"
+msgstr "Διαμέρισμα {0} (γρήγορη προσάρτηση: {1})"
+
+#: HddPartitions.py:55 HddSetup.py:75
+msgid "Partitions"
+msgstr "Διαμερίσματα"
+
+#: HddPartitions.py:77 HddPartitions.py:97
+msgid "Check"
+msgstr "Έλεγχος"
+
+#: HddPartitions.py:79 HddPartitions.py:99
+msgid "Format"
+msgstr "Διαμόρφωση"
+
+#: HddPartitions.py:87 HddPartitions.py:107
+msgid "Mount"
+msgstr "Προσάρτηση"
+
+#: HddPartitions.py:113
+msgid "Disk check completed successfully."
+msgstr "Ο έλεγχος δίσκου ολοκληρώθηκε με επιτυχία."
+
+#: HddPartitions.py:121
+msgid "Error checking disk. "
+msgstr "Σφάλμα κατά τον έλεγχο του δίσκου. "
+
+#: HddPartitions.py:122 HddPartitions.py:138
+msgid "The disk may be damaged!"
+msgstr "Ο δίσκος μπορεί να είναι κατεστραμμένος!"
+
+#: HddPartitions.py:129
+msgid "Format completed successfully."
+msgstr "Η διαμόρφωση ολοκληρώθηκε με επιτυχία."
+
+#: HddPartitions.py:132
+msgid "Formatting current drive failed! "
+msgstr "Δεν είναι δυνατή η διαμόρφωση του διαμερίσματος %d! "
+
+#: HddPartitions.py:137
+msgid "Error formatting disk. "
+msgstr "Σφάλμα κατά τη διαμόρφωση του δίσκου. "
+
+#: HddPartitions.py:155
+#, python-format
+msgid "Checking disk %s"
+msgstr "Έλεγχος δίσκου %s"
+
+#: HddPartitions.py:156
+msgid "Disk check"
+msgstr "Έλεγχος δίσκου"
+
+#: HddPartitions.py:174
+#, python-format
+msgid "Formatting disk %s"
+msgstr "Διαμόρφωση δίσκου %s"
+
+#: HddPartitions.py:175
+msgid "Disk format"
+msgstr "Διαμόρφωση δίσκου"
+
+#: HddPartitions.py:177
+msgid "Please select a file system for the partition"
+msgstr "Παρακαλούμε επιλέξτε το σύστημα αρχείων για το διαμέρισμα"
+
+#: HddPartitions.py:189
+#, python-brace-format
+msgid "Partition {0} - {1} (fixed mounted: {2})"
+msgstr "Διαμέρισμα {0} - {1} (σταθερή προσάρτηση: {2})"
+
+#: HddPartitions.py:191
+#, python-brace-format
+msgid "Partition {0} - {1} (fast mounted: {2})"
+msgstr "Διαμέρισμα {0} - {1} (γρήγορη προσάρτηση: {2})"
+
+#: HddPartitions.py:193
+#, python-brace-format
+msgid "Partition {0} - {1}"
+msgstr "Διαμέρισμα {0} - {1}"
+
+#: HddSetup.py:61 plugin.py:22 plugin.py:29
+msgid "Storage device manager"
+msgstr "Διαχείριση μέσων αποθήκευσης"
+
+#: HddSetup.py:70
+msgid "Info"
+msgstr "Πληροφορίες"
+
+#: HddSetup.py:72
+msgid "Initialize"
+msgstr "Αρχικοποίηση"
+
+#: HddSetup.py:109
+msgid "Initialization of fixed mounted drives require a system restart. "
+msgstr ""
+"Η αρχικοποίηση σταθερά προσαρτημένων συσκευών απαιτούν την επανεκκίνηση του "
+"συστήματος. "
+
+#: HddSetup.py:119
+#, python-format
+msgid "Formatting partition %d failed!"
+msgstr "Δεν είναι δυνατή η διαμόρφωση του διαμερίσματος %d!"
+
+#: HddSetup.py:141
+#, python-format
+msgid "Formatting partition %d"
+msgstr "Γίνεται διαμόρφωση διαμερίσματος %d"
+
+#: HddSetup.py:142
+msgid "Disk initialization"
+msgstr "Αρχικοποίηση δίσκου"
+
+#: HddSetup.py:153
+msgid "Partitioning failed!"
+msgstr "Η δημιουργία διαμερίσματος απέτυχε!"
+
+#: HddSetup.py:166
+msgid "Partitioning..."
+msgstr "Δημιουργία διαμερισμάτων..."
+
+#: HddSetup.py:166
+msgid "Initialize disk"
+msgstr "Αρχικοποίηση δίσκου"
+
+#: HddSetup.py:174
+msgid "Please select a file system for the drive"
+msgstr "Παρακαλούμε επιλέξτε το σύστημα αρχείων για τον δίσκο"
+
+#: HddSetup.py:179
+msgid "One partition"
+msgstr "Ένα διαμέρισμα"
+
+#: HddSetup.py:180 HddSetup.py:181
+msgid "Two partitions"
+msgstr "Δύο διαμερίσματα"
+
+#: HddSetup.py:182
+msgid "Three partitions"
+msgstr "Τρια διαμερίσματα"
+
+#: HddSetup.py:183
+msgid "Four partitions"
+msgstr "Τέσσερα διαμερίσματα"
+
+#: HddSetup.py:184
+msgid "Please select your preferred configuration"
+msgstr "Παρακαλούμε επιλέξτε την προτιμώμενη διαμόρφωση"
+
+#: HddSetup.py:189
+msgid "No - simple"
+msgstr "Όχι - απλό"
+
+#: HddSetup.py:189
+msgid "Yes - fstab entry as /media/hdd"
+msgstr "Ναι - προσάρτηση ως /media/hdd"
+
+#: HddSetup.py:195
+msgid "Initialize as HDD?"
+msgstr "Αρχικοποίηση ως σκληρός δίσκος;"
+
+#: HddSetup.py:206
+msgid "You need to initialize your storage device first."
+msgstr "Πρέπει πρώτα να αρχικοποιήσετε τη συσκευή αποθήκευσης."
+
+#: plugin.py:29
+msgid "Format and partition your storage devives and manage mount points"
+msgstr ""
+"Διαμόρφωση και δημιουργία διαμερισμάτων για τις αποθηκευτικές συσκευές σας "
+"και διαχείριση σημείων προσάρτησης"
+
+#: plugin.py:30
+msgid "Quickly and safely remove storage devices"
+msgstr "Γρήγορη και ασφαλής αφαίρεση συσκευών αποθήκευσης"
+
+#, python-format
+#~ msgid "Partition %s (fixed mounted: %s)"
+#~ msgstr "Διαμέρισμα %s (σταθερή προσάρτηση: %s)"
+
+#, python-format
+#~ msgid "Partition %s (fast mounted: %s)"
+#~ msgstr "Διαμέρισμα %s (γρήγορη προσάρτηση: %s)"
