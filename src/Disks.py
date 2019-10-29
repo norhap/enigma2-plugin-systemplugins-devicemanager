@@ -178,7 +178,7 @@ class Disks:
 		else:
 			dev = device[:3]
 			n = device[3:]
-		cmd = '/usr/sbin/sfdisk -c /dev/%s %s' % (dev, n)
+		cmd = '/usr/sbin/sfdisk --part-type /dev/%s %s' % (dev, n)
 		fdisk = os.popen(cmd, 'r')
 		res = fdisk.read().strip()
 		fdisk.close()
@@ -193,7 +193,7 @@ class Disks:
 		else:
 			dev = device[:3]
 			n = device[3:]
-		cmd = '/usr/sbin/sfdisk -c /dev/%s %s' % (dev, n) # use --part-type instead -c
+		cmd = '/usr/sbin/sfdisk --part-type /dev/%s %s' % (dev, n)
 		fdisk = os.popen(cmd, 'r')
 		res = fdisk.read().strip()
 		fdisk.close()
