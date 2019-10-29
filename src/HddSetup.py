@@ -63,7 +63,7 @@ class HddSetup(Screen):
 		self.mdisks = Disks()
 		self.asHDD = False
 		for disk in self.mdisks.disks:
-			capacity = "%d MB" % (disk[1] / (1024 * 1024))
+			capacity = "%.1f GB" % (disk[1] / 1073741824.0) # 1024 * 1024 * 1024
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2], disk[6], disk[7]))
 		self["menu"] = List(self.disks)
 		self["key_red"] = Button(_("Exit"))
@@ -93,7 +93,7 @@ class HddSetup(Screen):
 		self.disks = list()
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
-			capacity = "%d MB" % (disk[1] / (1024 * 1024))
+			capacity = "%.1f GB" % (disk[1] / 1073741824.0) # 1024 * 1024 * 1024
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2], disk[6], disk[7]))
 
 		self["menu"].setList(self.disks)

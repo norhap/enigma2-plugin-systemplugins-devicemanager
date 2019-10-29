@@ -182,7 +182,7 @@ class HddPartitions(Screen):
 		self.mountpoints.read()
 		count = 1
 		for part in self.disk[5]:
-			capacity = "%d MB" % (part[1] / (1024 * 1024))
+			capacity = "%.1f GB" % (part[1] / 1073741824.0) # 1024 * 1024 * 1024
 			mp = self.mountpoints.get(self.disk[0], count)
 			rmp = self.mountpoints.getRealMount(self.disk[0], count)
 			if len(mp) > 0:
