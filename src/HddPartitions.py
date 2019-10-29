@@ -54,10 +54,8 @@ class HddPartitions(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("Partitions"))
 		self.disk = disk
-		self.refreshMP(False)
 
-		self["menu"] = List(self.partitions)
-		self["menu"].onSelectionChanged.append(self.selectionChanged)
+		self["menu"] = List([])
 		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button("")
 		self["key_yellow"] = Button("")
@@ -72,19 +70,8 @@ class HddPartitions(Screen):
 			"cancel": self.close,
 		}, -2)
 
-		if len(self.disk[5]) > 0:
-			if self.disk[5][0][3] == "83" or self.disk[5][0][3] == "7" or self.disk[5][0][3] == "b" or self.disk[5][0][3] == "c":
-				self["key_green"].setText(_("Check"))
-				if sfdisk:
-					self["key_yellow"].setText(_("Format"))
-				mp = self.mountpoints.get(self.disk[0], 1)
-				rmp = self.mountpoints.getRealMount(self.disk[0], 1)
-				if len(mp) > 0 or len(rmp) > 0:
-					self.mounted = True
-					self["key_blue"].setText(_("Unmount"))
-				else:
-					self.mounted = False
-					self["key_blue"].setText(_("Mount"))
+		self.refreshMP()
+		self["menu"].onSelectionChanged.append(self.selectionChanged)
 
 	def selectionChanged(self):
 		self["key_green"].setText("")
@@ -92,7 +79,7 @@ class HddPartitions(Screen):
 		self["key_blue"].setText("")
 
 		if len(self.disk[5]) > 0:
-			index = self["menu"].getIndex()
+			index = self["menu"].getIndex() or 0
 			if self.disk[5][index][3] == "83" or self.disk[5][index][3] == "7" or self.disk[5][index][3] == "b" or self.disk[5][index][3] == "c":
 				self["key_blue"].setText(_("Check"))
 				if sfdisk:
@@ -176,7 +163,7 @@ class HddPartitions(Screen):
 
 			self.session.openWithCallback(domkfs, ChoiceBox, title=_("Please select a file system for the partition"), list=choicelist)
 
-	def refreshMP(self, uirefresh=True):
+	def refreshMP(self):
 		self.partitions = []
 		self.mountpoints = MountPoints()
 		self.mountpoints.read()
@@ -193,9 +180,8 @@ class HddPartitions(Screen):
 				self.partitions.append(PartitionEntry(_("Partition {0} - {1}").format(count, part[2]), capacity))
 			count += 1
 
-		if uirefresh:
-			self["menu"].setList(self.partitions)
-			self.selectionChanged()
+		self["menu"].setList(self.partitions)
+		self.selectionChanged()
 
 	def blue(self):
 		if len(self.disk[5]) > 0:
