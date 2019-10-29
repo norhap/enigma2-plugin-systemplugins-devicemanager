@@ -184,15 +184,16 @@ class HddSetup(Screen):
 			self.session.openWithCallback(self.chooseFSType, ChoiceBox, title=_("Please select your preferred configuration"), list=choicelist)
 
 	def yellow(self):
-		self.asHDD = False
 		if sfdisk and len(self.mdisks.disks) > 0:
-			choicelist = [(_("No - simple"), "simple"), (_("Yes - fstab entry as /media/hdd"), "as_hdd")]
-			def extraOption(ret):
-				if ret:
-					if ret[1] == "as_hdd":
+			choicelist = [(_("no"), "no"), (_("yes"), "yes")] # use custom list to have control over the return values
+			def extraOption(result):
+				if result is not False:
+					if result == "yes":
 						self.asHDD = True
+					else:
+						self.asHDD = False
 					self.yellowAnswer()
-			self.session.openWithCallback(extraOption, ChoiceBox, title=_("Initialize as HDD?"), list=choicelist)
+			self.session.openWithCallback(extraOption, MessageBox, _("Initialize as hard disk?"), simple=True, list=choicelist)
 
 	def green(self):
 		if len(self.mdisks.disks) > 0:
