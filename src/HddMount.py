@@ -4,6 +4,7 @@ from enigma import *
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.ActionMap import ActionMap
+from Components.Label import Label
 from Components.MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
@@ -187,12 +188,12 @@ def MountEntry(description, details):
 class HddFastRemove(Screen):
 
 	skin = """
-		<screen name="HddFastRemove" position="center,center" size="560,430" title="Hard Drive Fast Umount">
+		<screen name="HddFastRemove" position="center,center" size="560,430" title="Fast mounted drives removal">
 			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/blue.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="key_blue" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget source="menu" render="Listbox" position="10,55" size="520,380" scrollbarMode="showOnDemand">
+			<widget source="menu" render="Listbox" position="10,55" size="520,300" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
 						MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
@@ -204,14 +205,16 @@ class HddFastRemove(Screen):
 					}
 				</convert>
 			</widget>
+			<widget name="text" position="10,360" size="520,40" font="Regular;22" halign="center" valign="center"/>
 		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_("Fast mounted drives removal"))
 		self["menu"] = List([])
+		self["text"] = Label("")
 		self["key_red"] = StaticText(_("Exit"))
-		self["key_blue"] = StaticText(_("Unmount"))
+		self["key_blue"] = StaticText("")
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"red": self.close,
@@ -256,3 +259,8 @@ class HddFastRemove(Screen):
 						self.mounts.append(rmp)
 
 		self["menu"].setList(self.disks)
+		if self.disks:
+			self["key_blue"].setText(_("Unmount"))
+		else:
+			self["key_blue"].setText("")
+			self["text"].setText(_("No fast mounted drives found"))
