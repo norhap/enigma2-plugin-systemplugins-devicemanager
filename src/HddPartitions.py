@@ -6,8 +6,8 @@ from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
-from Components.Button import Button
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Disks import Disks
@@ -27,14 +27,14 @@ class HddPartitions(Screen):
 
 	skin = """
 		<screen name="HddPartitions" position="center,center" size="560,430" title="Hard Drive Partitions">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			<widget name="label_disk" position="20,45" font="Regular;20" halign="center" size="520,25" valign="center" />
 			<widget source="menu" render="Listbox" position="20,75" size="520,350" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
@@ -56,10 +56,10 @@ class HddPartitions(Screen):
 		self.disk = disk
 
 		self["menu"] = List([])
-		self["key_red"] = Button(_("Exit"))
-		self["key_green"] = Button("")
-		self["key_yellow"] = Button("")
-		self["key_blue"] = Button("")
+		self["key_red"] = StaticText(_("Exit"))
+		self["key_green"] = StaticText("")
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 		self["label_disk"] = Label("%s - %s" % (self.disk[0], self.disk[3]))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{

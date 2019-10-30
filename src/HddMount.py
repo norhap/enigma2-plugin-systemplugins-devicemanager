@@ -11,9 +11,9 @@ from Components.HTMLComponent import HTMLComponent
 from Tools.Directories import fileExists, crawlDirectory, resolveFilename, SCOPE_CURRENT_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from Components.Button import Button
 from Components.Label import Label
 from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 from MountPoints import MountPoints
@@ -25,14 +25,12 @@ class HddMountDevice(Screen):
 
 	skin = """
 		<screen name="HddMountDevice" position="center,center" size="560,430" title="Hard Drive Mount">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 			<widget name="menu" position="20,45" scrollbarMode="showOnDemand" size="520,380" transparent="1" />
 		</screen>"""
 
@@ -63,19 +61,18 @@ class HddMountDevice(Screen):
 
 		self["menu"] = MenuList(self.list)
 
-		self["key_red"] = Button(_("Fixed mount"))
-		self["key_green"] = Button(_("Fast mount"))
-		self["key_blue"] = Button(_("Exit"))
-		self["key_yellow"] = Button("")
+		self["key_red"] = StaticText(_("Exit"))
+		self["key_green"] = StaticText(_("Fast mount"))
+		self["key_yellow"] = StaticText(_("Fixed mount"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"blue": self.close,
+			"red": self.close,
 			"green": self.green,
-			"red": self.ok,
+			"yellow": self.yellow,
 			"cancel": self.close,
 		}, -2)
 
-	def ok(self):
+	def yellow(self):
 		self.fast = False
 		selected = self["menu"].getSelectedIndex()
 		if selected == 0:
@@ -192,10 +189,10 @@ class HddFastRemove(Screen):
 
 	skin = """
 		<screen name="HddFastRemove" position="center,center" size="560,430" title="Hard Drive Fast Umount">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="140,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_blue" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/blue.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_blue" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			<widget source="menu" render="Listbox" position="10,55" size="520,380" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
@@ -216,16 +213,16 @@ class HddFastRemove(Screen):
 		self.refreshMP(False)
 
 		self["menu"] = List(self.disks)
-		self["key_red"] = Button(_("Unmount"))
-		self["key_blue"] = Button(_("Exit"))
+		self["key_red"] = StaticText(_("Exit"))
+		self["key_blue"] = StaticText(_("Unmount"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"blue": self.close,
-			"red": self.red,
+			"red": self.close,
+			"blue": self.blue,
 			"cancel": self.close,
 		}, -2)
 
-	def red(self):
+	def blue(self):
 		if len(self.mounts) > 0:
 			self.sindex = self["menu"].getIndex()
 			self.mountpoints.umount(self.mounts[self.sindex]) # actually umount device here - also check both cases possible - for instance error case also check with stay in /e.g. /media/usb folder on telnet

@@ -2,10 +2,10 @@
 from . import _
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.Button import Button
 from Components.Label import Label
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config
+from Components.Sources.StaticText import StaticText
 import os
 import re
 
@@ -13,10 +13,10 @@ class HddInfo(ConfigListScreen, Screen):
 
 	skin = """
 		<screen name="HddInfo" position="center,center" size="560,430" title="Hard Drive Info">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget font="Regular;18" halign="left" name="model" position="20,45" size="540,25" valign="center" />
 			<widget font="Regular;18" halign="left" name="serial" position="20,75" size="540,25" valign="center" />
 			<widget font="Regular;18" halign="left" name="firmware" position="20,105" size="540,25" valign="center" />
@@ -35,13 +35,16 @@ class HddInfo(ConfigListScreen, Screen):
 		self.device = device
 		self.deviceinfo = deviceinfo
 		self.list = []
-		text = " "
+
+		self["key_red"] = StaticText(_("Exit"))
+		self["key_green"] = StaticText("")
+
 		if self.deviceinfo[2] and not self.deviceinfo[6]:
 			self.list.append(getConfigListEntry(_("Hard disk standby after"), config.usage.hdd_standby))
-			text = _("Save")
+			self["key_green"].setText(_("Save"))
+
 		ConfigListScreen.__init__(self, self.list)
-		self["key_green"] = Button(text)
-		self["key_red"] = Button(_("Exit"))
+
 		self["model"] = Label(_("Model: unknown"))
 		self["serial"] = Label(_("Serial: unknown"))
 		self["firmware"] = Label(_("Firmware: unknown"))

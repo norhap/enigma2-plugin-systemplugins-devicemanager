@@ -7,8 +7,8 @@ from Components.Sources.List import List
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.LoadPixmap import LoadPixmap
-from Components.Button import Button
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Standby import TryQuitMainloop
@@ -34,14 +34,14 @@ class HddSetup(Screen):
 
 	skin = """
 		<screen name="HddSetup" position="center,center" size="560,430" title="Hard Drive Setup">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			<widget source="menu" render="Listbox" position="20,45" size="520,380" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
@@ -66,13 +66,12 @@ class HddSetup(Screen):
 			capacity = "%.1f GB" % (disk[1] / 1073741824.0) # 1024 * 1024 * 1024
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2], disk[6], disk[7]))
 		self["menu"] = List(self.disks)
-		self["key_red"] = Button(_("Exit"))
-		self["key_green"] = Button(_("Info"))
+		self["key_red"] = StaticText(_("Exit"))
+		self["key_green"] = StaticText(_("Info"))
+		self["key_yellow"] = StaticText("")
 		if sfdisk:
-			self["key_yellow"] = Button(_("Initialize"))
-		else:
-			self["key_yellow"] = Button("")
-		self["key_blue"] = Button(_("Partitions"))
+			self["key_yellow"] = StaticText(_("Initialize"))
+		self["key_blue"] = StaticText(_("Partitions"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"blue": self.blue,
