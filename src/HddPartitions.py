@@ -95,7 +95,7 @@ class HddPartitions(Screen):
 
 	def chkfs(self):
 		disks = Disks()
-		ret = disks.chkfs(self.disk[5][self.index][0][:3], self.index+1, self.fstype)
+		ret = disks.chkfs(self.disk[5][self.index][0][:3], self.index + 1, self.fstype)
 		if ret == 0:
 			msg = _("Disk check completed successfully.")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
@@ -111,7 +111,7 @@ class HddPartitions(Screen):
 
 	def mkfs(self):
 		disks = Disks()
-		ret = disks.mkfs(self.disk[5][self.index][0][:3], self.index+1, self.fstype)
+		ret = disks.mkfs(self.disk[5][self.index][0][:3], self.index + 1, self.fstype)
 		if ret == 0:
 			msg = _("Format completed successfully.")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
@@ -211,4 +211,4 @@ class HddPartitions(Screen):
 					self.mountpoints.umount(rmp)
 				self.refreshMP()
 			else:
-				self.session.openWithCallback(self.refreshMP, HddMountDevice, self.disk[0], self.sindex+1)
+				self.session.openWithCallback(self.refreshMP, HddMountDevice, self.disk[0], self.sindex + 1)

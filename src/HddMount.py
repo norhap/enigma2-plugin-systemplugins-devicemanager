@@ -1,14 +1,11 @@
 # for localized messages
 from . import _
 from enigma import *
-from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
-from Components.GUIComponent import GUIComponent
-from Components.HTMLComponent import HTMLComponent
-from Tools.Directories import fileExists, crawlDirectory, resolveFilename, SCOPE_CURRENT_PLUGIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Label import Label
@@ -236,8 +233,8 @@ class HddFastRemove(Screen):
 		self.mdisks = Disks()
 		self.mountpoints = MountPoints()
 		self.mountpoints.read()
-		self.disks = list()
-		self.mounts = list()
+		self.disks = []
+		self.mounts = []
 		for disk in self.mdisks.disks:
 			if disk[2] and not disk[7]:
 				diskname = disk[3]

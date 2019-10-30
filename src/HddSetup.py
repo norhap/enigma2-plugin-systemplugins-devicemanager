@@ -59,7 +59,7 @@ class HddSetup(Screen):
 	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
 		self.setTitle(_("Storage device manager"))
-		self.disks = list()
+		self.disks = []
 		self.mdisks = Disks()
 		self.asHDD = False
 		for disk in self.mdisks.disks:
@@ -89,7 +89,7 @@ class HddSetup(Screen):
 		return self.mdisks.mkfs(self.mdisks.disks[self.sindex][0], self.formatted, self.fsresult)
 
 	def refresh(self):
-		self.disks = list()
+		self.disks = []
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
 			capacity = "%.1f GB" % (disk[1] / 1073741824.0) # 1024 * 1024 * 1024
