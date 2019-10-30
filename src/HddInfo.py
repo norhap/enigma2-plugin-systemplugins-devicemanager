@@ -36,7 +36,7 @@ class HddInfo(ConfigListScreen, Screen):
 		self.deviceinfo = deviceinfo
 		self.list = []
 
-		self["key_red"] = StaticText(_("Exit"))
+		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText("")
 
 		if self.deviceinfo[2] and not self.deviceinfo[6]:

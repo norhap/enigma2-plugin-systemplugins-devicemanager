@@ -58,7 +58,7 @@ class HddMountDevice(Screen):
 
 		self["menu"] = MenuList(self.list)
 
-		self["key_red"] = StaticText(_("Exit"))
+		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Fast mount"))
 		self["key_yellow"] = StaticText(_("Fixed mount"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-29 16:38+0200\n"
+"POT-Creation-Date: 2019-10-30 03:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,276 +24,283 @@ msgstr ""
 msgid "Device details"
 msgstr ""
 
-#: HddInfo.py:40
+#: HddInfo.py:39
+msgid "Close"
+msgstr ""
+
+#: HddInfo.py:43
 msgid "Hard disk standby after"
 msgstr ""
 
-#: HddInfo.py:41
+#: HddInfo.py:44
 msgid "Save"
 msgstr ""
 
-#: HddInfo.py:44 HddMount.py:68 HddMount.py:220 HddPartitions.py:61
-#: HddSetup.py:69
-msgid "Exit"
-msgstr ""
-
-#: HddInfo.py:45
+#: HddInfo.py:48
 msgid "Model: unknown"
 msgstr ""
 
-#: HddInfo.py:46
+#: HddInfo.py:49
 msgid "Serial: unknown"
 msgstr ""
 
-#: HddInfo.py:47
+#: HddInfo.py:50
 msgid "Firmware: unknown"
 msgstr ""
 
-#: HddInfo.py:48
+#: HddInfo.py:51
 msgid "Cylinders: unknown"
 msgstr ""
 
-#: HddInfo.py:49
+#: HddInfo.py:52
 msgid "Heads: unknown"
 msgstr ""
 
-#: HddInfo.py:50
+#: HddInfo.py:53
 msgid "Sectors: unknown"
 msgstr ""
 
-#: HddInfo.py:51
+#: HddInfo.py:54
 msgid "Read disk speed: unknown"
 msgstr ""
 
-#: HddInfo.py:52
+#: HddInfo.py:55
 msgid "Read disk cache speed: unknown"
 msgstr ""
 
-#: HddInfo.py:53
+#: HddInfo.py:56
 msgid "Disk temperature: unknown"
-msgstr ""
-
-#: HddInfo.py:83
-#, python-format
-msgid "Model: %s"
 msgstr ""
 
 #: HddInfo.py:86
 #, python-format
-msgid "Serial: %s"
+msgid "Model: %s"
 msgstr ""
 
 #: HddInfo.py:89
 #, python-format
-msgid "Firmware: %s"
+msgid "Serial: %s"
 msgstr ""
 
 #: HddInfo.py:92
 #, python-format
-msgid "Cylinders: %s (max) %s (current)"
+msgid "Firmware: %s"
 msgstr ""
 
 #: HddInfo.py:95
 #, python-format
-msgid "Heads: %s (max) %s (current)"
+msgid "Cylinders: %s (max) %s (current)"
 msgstr ""
 
 #: HddInfo.py:98
 #, python-format
+msgid "Heads: %s (max) %s (current)"
+msgstr ""
+
+#: HddInfo.py:101
+#, python-format
 msgid "Sectors: %s (max) %s (current)"
 msgstr ""
 
-#: HddInfo.py:104
+#: HddInfo.py:107
 #, python-format
 msgid "Read speed: %s"
 msgstr ""
 
-#: HddInfo.py:110
+#: HddInfo.py:113
 #, python-format
 msgid "Read cache speed: %s"
 msgstr ""
 
-#: HddInfo.py:116
+#: HddInfo.py:119
 #, python-format
 msgid "Disk temperature: %s"
 msgstr ""
 
-#: HddMount.py:41
+#: HddMount.py:36
 msgid "Mount points"
 msgstr ""
 
+#: HddMount.py:45 HddMount.py:46 HddMount.py:47 HddMount.py:48 HddMount.py:49
 #: HddMount.py:50 HddMount.py:51 HddMount.py:52 HddMount.py:53 HddMount.py:54
-#: HddMount.py:55 HddMount.py:56 HddMount.py:57 HddMount.py:58 HddMount.py:59
-#: HddMount.py:60 HddMount.py:61
+#: HddMount.py:55 HddMount.py:56
 #, python-format
 msgid "Mount as %s"
 msgstr ""
 
-#: HddMount.py:62
+#: HddMount.py:57
 msgid "Mount on custom path"
 msgstr ""
 
-#: HddMount.py:66
-msgid "Fixed mount"
+#: HddMount.py:61 HddPartitions.py:59
+msgid "Cancel"
 msgstr ""
 
-#: HddMount.py:67
+#: HddMount.py:62
 msgid "Fast mount"
 msgstr ""
 
-#: HddMount.py:106 HddMount.py:136
+#: HddMount.py:63
+msgid "Fixed mount"
+msgstr ""
+
+#: HddMount.py:100 HddMount.py:130
 msgid "Insert mount point:"
 msgstr ""
 
-#: HddMount.py:147
+#: HddMount.py:141
 msgid "Selected mount point is already used by another drive. "
 msgstr ""
 
-#: HddMount.py:148
+#: HddMount.py:142
 msgid "Do you want to replace the existing drive with the new one?"
 msgstr ""
 
-#: HddMount.py:149
+#: HddMount.py:143
 msgid "Mount point already exists"
 msgstr ""
 
-#: HddMount.py:157 HddPartitions.py:116 HddPartitions.py:217 HddSetup.py:148
+#: HddMount.py:151 HddPartitions.py:103 HddPartitions.py:203 HddSetup.py:147
 msgid "Unmounting current drive failed! "
 msgstr ""
 
-#: HddMount.py:158 HddPartitions.py:117 HddPartitions.py:133
-#: HddPartitions.py:218 HddSetup.py:149
+#: HddMount.py:152 HddPartitions.py:104 HddPartitions.py:120
+#: HddPartitions.py:204 HddSetup.py:148
 msgid "A recording in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem. "
 msgstr ""
 
-#: HddMount.py:159 HddPartitions.py:118 HddPartitions.py:134
-#: HddPartitions.py:219 HddSetup.py:150
+#: HddMount.py:153 HddPartitions.py:105 HddPartitions.py:121
+#: HddPartitions.py:205 HddSetup.py:149
 msgid "Please stop these processes or applications and try again."
 msgstr ""
 
-#: HddMount.py:168
+#: HddMount.py:162
 msgid "Mounting new drive failed! "
 msgstr ""
 
-#: HddMount.py:169
+#: HddMount.py:163
 msgid "Please check the filesystem or format it and try again."
 msgstr ""
 
-#: HddMount.py:175
+#: HddMount.py:169
 msgid "Changes in fixed mounted drives require a system restart. "
 msgstr ""
 
-#: HddMount.py:176 HddSetup.py:110
+#: HddMount.py:170 HddSetup.py:109
 msgid "Do you want to restart your receiver now?"
 msgstr ""
 
-#: HddMount.py:177 HddSetup.py:111
+#: HddMount.py:171 HddSetup.py:110
 msgid "Restart receiver"
 msgstr ""
 
-#: HddMount.py:215 plugin.py:30
+#: HddMount.py:209 plugin.py:30
 msgid "Fast mounted drives removal"
 msgstr ""
 
-#: HddMount.py:219 HddPartitions.py:84 HddPartitions.py:104
+#: HddMount.py:213 HddSetup.py:69
+msgid "Exit"
+msgstr ""
+
+#: HddMount.py:214 HddPartitions.py:91
 msgid "Unmount"
 msgstr ""
 
-#: HddMount.py:232
+#: HddMount.py:226
 msgid "Fast mounted media removed successfully. "
 msgstr ""
 
-#: HddMount.py:233
+#: HddMount.py:227
 msgid "You can safely unplug the device now, if there are no other mounted partitions from it. "
 msgstr ""
 
-#: HddMount.py:234
+#: HddMount.py:228
 msgid "Please remove fixed mounted devices with 'Storage device manager' panel."
 msgstr ""
 
-#: HddMount.py:256
+#: HddMount.py:250
 #, python-brace-format
 msgid "Partition {0} (fixed mounted: {1})"
 msgstr ""
 
-#: HddMount.py:259
+#: HddMount.py:253
 #, python-brace-format
 msgid "Partition {0} (fast mounted: {1})"
 msgstr ""
 
-#: HddPartitions.py:55 HddSetup.py:75
+#: HddPartitions.py:55 HddSetup.py:74
 msgid "Partitions"
 msgstr ""
 
-#: HddPartitions.py:77 HddPartitions.py:97
+#: HddPartitions.py:84
 msgid "Check"
 msgstr ""
 
-#: HddPartitions.py:79 HddPartitions.py:99
+#: HddPartitions.py:86
 msgid "Format"
 msgstr ""
 
-#: HddPartitions.py:87 HddPartitions.py:107
+#: HddPartitions.py:94
 msgid "Mount"
 msgstr ""
 
-#: HddPartitions.py:113
+#: HddPartitions.py:100
 msgid "Disk check completed successfully."
 msgstr ""
 
-#: HddPartitions.py:121
+#: HddPartitions.py:108
 msgid "Error checking disk. "
 msgstr ""
 
-#: HddPartitions.py:122 HddPartitions.py:138
+#: HddPartitions.py:109 HddPartitions.py:125
 msgid "The disk may be damaged!"
 msgstr ""
 
-#: HddPartitions.py:129
+#: HddPartitions.py:116
 msgid "Format completed successfully."
 msgstr ""
 
-#: HddPartitions.py:132
+#: HddPartitions.py:119
 msgid "Formatting current drive failed! "
 msgstr ""
 
-#: HddPartitions.py:137
+#: HddPartitions.py:124
 msgid "Error formatting disk. "
 msgstr ""
 
-#: HddPartitions.py:155
+#: HddPartitions.py:142
 #, python-format
 msgid "Checking disk %s"
 msgstr ""
 
-#: HddPartitions.py:156
+#: HddPartitions.py:143
 msgid "Disk check"
 msgstr ""
 
-#: HddPartitions.py:174
+#: HddPartitions.py:161
 #, python-format
 msgid "Formatting disk %s"
 msgstr ""
 
-#: HddPartitions.py:175
+#: HddPartitions.py:162
 msgid "Disk format"
 msgstr ""
 
-#: HddPartitions.py:177
+#: HddPartitions.py:164
 msgid "Please select a file system for the partition"
 msgstr ""
 
-#: HddPartitions.py:189
+#: HddPartitions.py:176
 #, python-brace-format
 msgid "Partition {0} - {1} (fixed mounted: {2})"
 msgstr ""
 
-#: HddPartitions.py:191
+#: HddPartitions.py:178
 #, python-brace-format
 msgid "Partition {0} - {1} (fast mounted: {2})"
 msgstr ""
 
-#: HddPartitions.py:193
+#: HddPartitions.py:180
 #, python-brace-format
 msgid "Partition {0} - {1}"
 msgstr ""
@@ -306,74 +313,74 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: HddSetup.py:72
+#: HddSetup.py:73
 msgid "Initialize"
 msgstr ""
 
-#: HddSetup.py:109
+#: HddSetup.py:108
 msgid "Initialization of fixed mounted drives require a system restart. "
 msgstr ""
 
-#: HddSetup.py:119
+#: HddSetup.py:118
 #, python-format
 msgid "Formatting partition %d failed!"
 msgstr ""
 
-#: HddSetup.py:141
+#: HddSetup.py:140
 #, python-format
 msgid "Formatting partition %d"
 msgstr ""
 
-#: HddSetup.py:142
+#: HddSetup.py:141
 msgid "Disk initialization"
 msgstr ""
 
-#: HddSetup.py:153
+#: HddSetup.py:152
 msgid "Partitioning failed!"
 msgstr ""
 
-#: HddSetup.py:166
+#: HddSetup.py:165
 msgid "Partitioning..."
 msgstr ""
 
-#: HddSetup.py:166
+#: HddSetup.py:165
 msgid "Initialize disk"
 msgstr ""
 
-#: HddSetup.py:174
+#: HddSetup.py:173
 msgid "Please select a file system for the drive"
 msgstr ""
 
-#: HddSetup.py:179
+#: HddSetup.py:178
 msgid "One partition"
 msgstr ""
 
-#: HddSetup.py:180 HddSetup.py:181
+#: HddSetup.py:179 HddSetup.py:180
 msgid "Two partitions"
 msgstr ""
 
-#: HddSetup.py:182
+#: HddSetup.py:181
 msgid "Three partitions"
 msgstr ""
 
-#: HddSetup.py:183
+#: HddSetup.py:182
 msgid "Four partitions"
 msgstr ""
 
-#: HddSetup.py:184
+#: HddSetup.py:183
 msgid "Please select your preferred configuration"
 msgstr ""
 
-#: HddSetup.py:189
-msgid "No - simple"
+#: HddSetup.py:187
+msgid "no"
 msgstr ""
 
-#: HddSetup.py:189
-msgid "Yes - fstab entry as /media/hdd"
+#: HddSetup.py:187
+msgid "yes"
 msgstr ""
 
 #: HddSetup.py:195
-msgid "Initialize as HDD?"
+msgid "Initialize as hard disk?"
 msgstr ""
 
 #: HddSetup.py:206

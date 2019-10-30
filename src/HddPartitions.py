@@ -56,7 +56,7 @@ class HddPartitions(Screen):
 		self.disk = disk
 
 		self["menu"] = List([])
-		self["key_red"] = StaticText(_("Exit"))
+		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText("")
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText("")
