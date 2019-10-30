@@ -213,7 +213,7 @@ class HddFastRemove(Screen):
 		self.setTitle(_("Fast mounted drives removal"))
 		self["menu"] = List([])
 		self["text"] = Label("")
-		self["key_red"] = StaticText(_("Exit"))
+		self["key_red"] = StaticText(_("Close"))
 		self["key_blue"] = StaticText("")
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{

@@ -69,7 +69,7 @@ class HddSetup(Screen):
 			capacity = "%.1f GB" % (disk[1] / 1073741824.0) # 1024 * 1024 * 1024
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2], disk[6], disk[7]))
 		self["menu"] = List(self.disks)
-		self["key_red"] = StaticText(_("Exit"))
+		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Info"))
 		self["key_yellow"] = StaticText("")
 		if sfdisk:
