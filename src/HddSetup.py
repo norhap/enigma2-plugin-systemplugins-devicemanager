@@ -4,7 +4,7 @@ from enigma import *
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
@@ -23,11 +23,14 @@ sfdisk = os.path.exists('/usr/sbin/sfdisk')
 
 def DiskEntry(model, size, removable, rotational, internal):
 	if not removable and internal and rotational:
-		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/disk.png"))
+		icon = "disk-hdd"
 	elif internal and not rotational:
-		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/ssddisk.png"))
+		icon = "disk-ssd"
 	else:
-		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/diskusb.png"))
+		icon = "disk-usb"
+	picture = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/DeviceManager/%s.png" % icon))
+	if picture is None:
+		picture = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/%s.png" % icon))
 	return (picture, model, size)
 
 class HddSetup(Screen):

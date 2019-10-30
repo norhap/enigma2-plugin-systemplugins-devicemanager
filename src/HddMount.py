@@ -5,7 +5,7 @@ from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Label import Label
@@ -179,7 +179,9 @@ class HddMountDevice(Screen):
 			self.close()
 
 def MountEntry(description, details):
-	picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/diskusb.png"));
+	picture = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/DeviceManager/disk-usb.png"))
+	if picture is None:
+		picture = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/disk-usb.png"))
 	return (picture, description, details)
 
 class HddFastRemove(Screen):

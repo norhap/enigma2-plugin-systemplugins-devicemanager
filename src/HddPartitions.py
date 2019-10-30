@@ -4,7 +4,7 @@ from enigma import *
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
@@ -19,8 +19,9 @@ import os
 sfdisk = os.path.exists('/usr/sbin/sfdisk')
 
 def PartitionEntry(description, size):
-	picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/partitionmanager.png"))
-
+	picture = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/DeviceManager/partition.png"))
+	if picture is None:
+		picture = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/partition.png"))
 	return (picture, description, size)
 
 class HddPartitions(Screen):
