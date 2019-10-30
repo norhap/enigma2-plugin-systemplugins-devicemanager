@@ -209,9 +209,7 @@ class HddFastRemove(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_("Fast mounted drives removal"))
-		self.refreshMP(False)
-
-		self["menu"] = List(self.disks)
+		self["menu"] = List([])
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_blue"] = StaticText(_("Unmount"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
@@ -221,6 +219,8 @@ class HddFastRemove(Screen):
 			"cancel": self.close,
 		}, -2)
 
+		self.refreshMP()
+
 	def blue(self):
 		if len(self.mounts) > 0:
 			self.sindex = self["menu"].getIndex()
@@ -229,9 +229,9 @@ class HddFastRemove(Screen):
 			msg += _("You can safely unplug the device now, if there are no other mounted partitions from it. ")
 			msg += _("Please remove fixed mounted devices with 'Storage device manager' panel.")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
-			self.refreshMP(True)
+			self.refreshMP()
 
-	def refreshMP(self, uirefresh=True):
+	def refreshMP(self):
 		self.mdisks = Disks()
 		self.mountpoints = MountPoints()
 		self.mountpoints.read()
@@ -254,5 +254,5 @@ class HddFastRemove(Screen):
 					elif len(rmp) > 0:
 						self.disks.append(MountEntry(disk[3], _("Partition {0} (fast mounted: {1})").format(partition[0][3:], rmp)))
 						self.mounts.append(rmp)
-		if uirefresh:
-			self["menu"].setList(self.disks)
+
+		self["menu"].setList(self.disks)
