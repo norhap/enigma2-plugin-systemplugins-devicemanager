@@ -71,9 +71,10 @@ class HddSetup(Screen):
 		self["menu"] = List(self.disks)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Info"))
-		self["key_yellow"] = StaticText("")
 		if sfdisk:
 			self["key_yellow"] = StaticText(_("Initialize"))
+		else:
+			self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText(_("Partitions"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
