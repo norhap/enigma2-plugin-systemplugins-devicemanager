@@ -1,8 +1,6 @@
-
 import os
 import re
 import platform
-from Tools.Directories import fileExists
 
 #sfdisk_version_bug = '2.28.1' in os.popen('/usr/sbin/sfdisk -v').read()
 

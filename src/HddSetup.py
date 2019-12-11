@@ -5,7 +5,6 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText

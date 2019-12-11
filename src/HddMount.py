@@ -8,7 +8,6 @@ from Components.Label import Label
 from Components.MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -17,7 +16,6 @@ from Screens.Standby import TryQuitMainloop
 from MountPoints import MountPoints
 from Disks import Disks
 import os
-import re
 
 class HddMountDevice(Screen):
 

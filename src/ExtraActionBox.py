@@ -1,8 +1,6 @@
 from enigma import eTimer
 from Screens.Screen import Screen
-from Tools.Directories import SCOPE_CURRENT_PLUGIN, resolveFilename
 from Components.Label import Label
-from Components.Pixmap import Pixmap
 
 class ExtraActionBox(Screen):
 
