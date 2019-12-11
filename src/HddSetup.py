@@ -5,7 +5,6 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
@@ -48,7 +47,7 @@ class HddSetup(Screen):
 			<widget source="menu" render="Listbox" position="20,45" size="520,380" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
-						MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
+						MultiContentEntryPixmapAlphaBlend(pos = (5, 0), size = (48, 48), png = 0),
 						MultiContentEntryText(pos = (65, 10), size = (330, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
 						MultiContentEntryText(pos = (405, 10), size = (125, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
 						],
@@ -71,9 +70,10 @@ class HddSetup(Screen):
 		self["menu"] = List(self.disks)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Info"))
-		self["key_yellow"] = StaticText("")
 		if sfdisk:
 			self["key_yellow"] = StaticText(_("Initialize"))
+		else:
+			self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText(_("Partitions"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{

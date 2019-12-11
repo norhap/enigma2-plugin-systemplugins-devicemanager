@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-30 16:35+0200\n"
+"POT-Creation-Date: 2019-12-11 18:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,17 +160,17 @@ msgstr ""
 msgid "Mount point already exists"
 msgstr ""
 
-#: HddMount.py:152 HddPartitions.py:104 HddPartitions.py:204 HddSetup.py:150
+#: HddMount.py:152 HddPartitions.py:104 HddPartitions.py:204 HddSetup.py:151
 msgid "Unmounting current drive failed! "
 msgstr ""
 
 #: HddMount.py:153 HddPartitions.py:105 HddPartitions.py:121
-#: HddPartitions.py:205 HddSetup.py:151
+#: HddPartitions.py:205 HddSetup.py:152
 msgid "A recording in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem. "
 msgstr ""
 
 #: HddMount.py:154 HddPartitions.py:106 HddPartitions.py:122
-#: HddPartitions.py:206 HddSetup.py:152
+#: HddPartitions.py:206 HddSetup.py:153
 msgid "Please stop these processes or applications and try again."
 msgstr ""
 
@@ -186,11 +186,11 @@ msgstr ""
 msgid "Changes in fixed mounted drives require a system restart. "
 msgstr ""
 
-#: HddMount.py:171 HddSetup.py:112
+#: HddMount.py:171 HddSetup.py:113
 msgid "Do you want to restart your receiver now?"
 msgstr ""
 
-#: HddMount.py:172 HddSetup.py:113
+#: HddMount.py:172 HddSetup.py:114
 msgid "Restart receiver"
 msgstr ""
 
@@ -228,7 +228,7 @@ msgstr ""
 msgid "No fast mounted drives found"
 msgstr ""
 
-#: HddPartitions.py:56 HddSetup.py:77
+#: HddPartitions.py:56 HddSetup.py:78
 msgid "Partitions"
 msgstr ""
 
@@ -313,82 +313,82 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: HddSetup.py:76
+#: HddSetup.py:75
 msgid "Initialize"
 msgstr ""
 
-#: HddSetup.py:111
+#: HddSetup.py:112
 msgid "Initialization of fixed mounted drives require a system restart. "
 msgstr ""
 
-#: HddSetup.py:121
+#: HddSetup.py:122
 #, python-format
 msgid "Formatting partition %d failed!"
 msgstr ""
 
-#: HddSetup.py:143
+#: HddSetup.py:144
 #, python-format
 msgid "Formatting partition %d"
 msgstr ""
 
-#: HddSetup.py:144
+#: HddSetup.py:145
 msgid "Disk initialization"
 msgstr ""
 
-#: HddSetup.py:155
+#: HddSetup.py:156
 msgid "Partitioning failed!"
 msgstr ""
 
-#: HddSetup.py:168
+#: HddSetup.py:169
 msgid "Partitioning..."
 msgstr ""
 
-#: HddSetup.py:168
+#: HddSetup.py:169
 msgid "Initialize disk"
 msgstr ""
 
-#: HddSetup.py:176
+#: HddSetup.py:177
 msgid "Please select a file system for the drive"
 msgstr ""
 
-#: HddSetup.py:181
+#: HddSetup.py:182
 msgid "One partition"
 msgstr ""
 
-#: HddSetup.py:182 HddSetup.py:183
+#: HddSetup.py:183 HddSetup.py:184
 msgid "Two partitions"
 msgstr ""
 
-#: HddSetup.py:184
+#: HddSetup.py:185
 msgid "Three partitions"
 msgstr ""
 
-#: HddSetup.py:185
+#: HddSetup.py:186
 msgid "Four partitions"
 msgstr ""
 
-#: HddSetup.py:186
+#: HddSetup.py:187
 msgid "Please select your preferred configuration"
 msgstr ""
 
-#: HddSetup.py:190
+#: HddSetup.py:191
 msgid "no"
 msgstr ""
 
-#: HddSetup.py:190
+#: HddSetup.py:191
 msgid "yes"
 msgstr ""
 
-#: HddSetup.py:198
+#: HddSetup.py:199
 msgid "Initialize as hard disk?"
 msgstr ""
 
-#: HddSetup.py:209
+#: HddSetup.py:210
 msgid "You need to initialize your storage device first."
 msgstr ""
 
 #: plugin.py:29
-msgid "Format and partition your storage devives and manage mount points"
+msgid "Format and partition storage devices and manage mount points"
 msgstr ""
 
 #: plugin.py:30

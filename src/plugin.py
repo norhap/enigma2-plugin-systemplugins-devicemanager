@@ -26,5 +26,5 @@ def deviceManagerFastRemove(session, **kwargs):
 
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name=_("Storage device manager"), description=_("Format and partition your storage devives and manage mount points"), where=PluginDescriptor.WHERE_MENU, fnc=deviceManagerSetup),
+	return [PluginDescriptor(name=_("Storage device manager"), description=_("Format and partition storage devices and manage mount points"), where=PluginDescriptor.WHERE_MENU, fnc=deviceManagerSetup),
 			PluginDescriptor(name=_("Fast mounted drives removal"), description=_("Quickly and safely remove storage devices"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=deviceManagerFastRemove)]
