@@ -40,7 +40,7 @@ class HddPartitions(Screen):
 			<widget source="menu" render="Listbox" position="20,75" size="520,350" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
-						MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
+						MultiContentEntryPixmapAlphaBlend(pos = (5, 0), size = (48, 48), png = 0),
 						MultiContentEntryText(pos = (65, 10), size = (360, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
 						MultiContentEntryText(pos = (435, 10), size = (125, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
 						],

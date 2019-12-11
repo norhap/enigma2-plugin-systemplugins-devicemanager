@@ -48,7 +48,7 @@ class HddSetup(Screen):
 			<widget source="menu" render="Listbox" position="20,45" size="520,380" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
-						MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
+						MultiContentEntryPixmapAlphaBlend(pos = (5, 0), size = (48, 48), png = 0),
 						MultiContentEntryText(pos = (65, 10), size = (330, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
 						MultiContentEntryText(pos = (405, 10), size = (125, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
 						],

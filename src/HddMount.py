@@ -196,7 +196,7 @@ class HddFastRemove(Screen):
 			<widget source="menu" render="Listbox" position="10,55" size="520,300" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
-						MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
+						MultiContentEntryPixmapAlphaBlend(pos = (5, 0), size = (48, 48), png = 0),
 						MultiContentEntryText(pos = (65, 3), size = (190, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
 						MultiContentEntryText(pos = (165, 27), size = (290, 38), font=1, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
 						],
