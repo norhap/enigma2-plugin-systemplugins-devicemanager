@@ -7,7 +7,7 @@ from Plugins.Plugin import PluginDescriptor
 import os
 
 def supportExtFat():
-	if "exfat-fuse" in open("/etc/filesystems").read():
+	if os.path.isfile("/etc/filesystems") and "exfat-fuse" in open("/etc/filesystems").read():
 		pass
 	else:
 		os.system("echo exfat-fuse >> /etc/filesystems")
