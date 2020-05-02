@@ -329,7 +329,7 @@ msgstr "Partición {0} - {1}"
 
 #: HddSetup.py:64 plugin.py:22 plugin.py:29
 msgid "Storage device manager"
-msgstr "Administrador de dispositivos de almacenamiento"
+msgstr "Administrador dispositivos almacenamiento"
 
 #: HddSetup.py:73
 msgid "Info"
