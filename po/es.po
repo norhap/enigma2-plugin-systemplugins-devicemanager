@@ -22,7 +22,6 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: HddInfo.py:34
-#, fuzzy
 msgid "Device details"
 msgstr "Detalles Dispositivo"
 
@@ -39,32 +38,26 @@ msgid "Save"
 msgstr "Guardar"
 
 #: HddInfo.py:48
-#, fuzzy
 msgid "Model: unknown"
 msgstr "Modelo: desconocido"
 
 #: HddInfo.py:49
-#, fuzzy
 msgid "Serial: unknown"
 msgstr "Serial: desconocido"
 
 #: HddInfo.py:50
-#, fuzzy
 msgid "Firmware: unknown"
 msgstr "Firmware: desconocido"
 
 #: HddInfo.py:51
-#, fuzzy
 msgid "Cylinders: unknown"
 msgstr "Cilindros: desconocido"
 
 #: HddInfo.py:52
-#, fuzzy
 msgid "Heads: unknown"
 msgstr "Cabezales: desconocido"
 
 #: HddInfo.py:53
-#, fuzzy
 msgid "Sectors: unknown"
 msgstr "Sectores: desconocido"
 
@@ -77,17 +70,16 @@ msgid "Read disk cache speed: unknown"
 msgstr "Lectura valocidad caché disco: desconocido"
 
 #: HddInfo.py:56
-#, fuzzy
 msgid "Disk temperature: unknown"
 msgstr "Temperatura Disco: desconocido"
 
 #: HddInfo.py:86
-#, fuzzy, python-format
+#, python-format
 msgid "Model: %s"
 msgstr "Modelo: %s"
 
 #: HddInfo.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Serial: %s"
 msgstr "Serial: %s"
 
@@ -97,49 +89,47 @@ msgid "Firmware: %s"
 msgstr "Firmware: %s"
 
 #: HddInfo.py:95
-#, fuzzy, python-format
+#, python-format
 msgid "Cylinders: %s (max) %s (current)"
 msgstr "Cilindros: %s (máximo) %s (actual)"
 
 #: HddInfo.py:98
-#, fuzzy, python-format
+#, python-format
 msgid "Heads: %s (max) %s (current)"
 msgstr "Cabezales: %s (máximo) %s (actual)"
 
 #: HddInfo.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "Sectors: %s (max) %s (current)"
 msgstr "Sectores: %s (máximo) %s (actual)"
 
 #: HddInfo.py:107
-#, fuzzy, python-format
+#, python-format
 msgid "Read speed: %s"
 msgstr "Velocidad lectura: %s"
 
 #: HddInfo.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "Read cache speed: %s"
 msgstr "Velocidad lectura caché: %s"
 
 #: HddInfo.py:119
-#, fuzzy, python-format
+#, python-format
 msgid "Disk temperature: %s"
 msgstr "Temperatura Disco: %s"
 
 #: HddMount.py:37
-#, fuzzy
 msgid "Mount points"
 msgstr "Puntos de Montaje"
 
 #: HddMount.py:46 HddMount.py:47 HddMount.py:48 HddMount.py:49 HddMount.py:50
 #: HddMount.py:51 HddMount.py:52 HddMount.py:53 HddMount.py:54 HddMount.py:55
 #: HddMount.py:56 HddMount.py:57
-#, fuzzy, python-format
+#, python-format
 msgid "Mount as %s"
 msgstr "Montar como %s"
 
 #: HddMount.py:58
-#, fuzzy
 msgid "Mount on custom path"
 msgstr "Montar en ruta"
 
@@ -148,17 +138,14 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: HddMount.py:63
-#, fuzzy
 msgid "Fast mount"
 msgstr "Montaje rápido"
 
 #: HddMount.py:64
-#, fuzzy
 msgid "Fixed mount"
 msgstr "Montaje fijo"
 
 #: HddMount.py:101 HddMount.py:131
-#, fuzzy
 msgid "Insert mount point:"
 msgstr "Insertar punto de montaje:"
 
@@ -171,7 +158,6 @@ msgid "Do you want to replace the existing drive with the new one?"
 msgstr "¿Desea reemplazar la unidad existente con la nueva?"
 
 #: HddMount.py:144
-#, fuzzy
 msgid "Mount point already exists"
 msgstr "El punto de montaje ya existe"
 
@@ -181,7 +167,6 @@ msgstr "Desmontaje de la unidad actual ha fallado! "
 
 #: HddMount.py:153 HddPartitions.py:105 HddPartitions.py:121
 #: HddPartitions.py:205 HddSetup.py:152
-#, fuzzy
 msgid "A recording in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem. "
 msgstr "Una grabación en progreso, Timeshift o algunas herramientas externas (como samba, swapfile y nfsd) pueden causar este problema. "
 
@@ -190,7 +175,6 @@ msgid "Mounting new drive failed! "
 msgstr "El montaje de la nueva unidad ha fallado! "
 
 #: HddMount.py:164
-#, fuzzy
 msgid "Please stop these processes or applications and try again."
 msgstr "Detenga estos procesos o aplicaciones e intente nuevamente."
 
@@ -199,12 +183,10 @@ msgid "Changes in fixed mounted drives require a system restart. "
 msgstr "Los cambios en unidades montadas fijas requieren un reinicio del sistema. "
 
 #: HddMount.py:171 HddSetup.py:113
-#, fuzzy
 msgid "Do you want to restart your receiver now?"
 msgstr "Quieres reiniciar su receptor ahora?"
 
 #: HddMount.py:172 HddSetup.py:114
-#, fuzzy
 msgid "Restart receiver"
 msgstr "Reiniciar receptor"
 
@@ -225,7 +207,7 @@ msgid "Please remove fixed mounted devices with 'Storage device manager' panel."
 msgstr "Retire los dispositivos montados fijos con el panel 'Administrador de dispositivos de almacenamiento'."
 
 #: HddMount.py:255
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Partition {0} (fixed mounted: {1})"
 msgstr "Partición {0} (montaje fijo: {1})"
 
@@ -243,7 +225,6 @@ msgid "No fast mounted drives found"
 msgstr "No se encontraron unidades montadas rápidamente"
 
 #: HddPartitions.py:56 HddSetup.py:78
-#, fuzzy
 msgid "Partitions"
 msgstr "Particiones"
 
@@ -264,17 +245,14 @@ msgid "Disk check completed successfully."
 msgstr "Verificación de disco completada con éxito."
 
 #: HddPartitions.py:109
-#, fuzzy
 msgid "Error checking disk. "
 msgstr "Error comprobando disco. "
 
 #: HddPartitions.py:110 HddPartitions.py:126
-#, fuzzy
 msgid "The disk may be damaged!"
 msgstr "El disco puede estar dañado!"
 
 #: HddPartitions.py:117
-#, fuzzy
 msgid "Format completed successfully."
 msgstr "Formato completado con éxito."
 
@@ -283,32 +261,28 @@ msgid "Formatting current drive failed! "
 msgstr "Formateado unidad actual fallido! "
 
 #: HddPartitions.py:125
-#, fuzzy
 msgid "Error formatting disk. "
 msgstr "Error formateando disco. "
 
 #: HddPartitions.py:143
-#, fuzzy, python-format
+#, python-format
 msgid "Checking disk %s"
 msgstr "Comprobando disco %s"
 
 #: HddPartitions.py:144
-#, fuzzy
 msgid "Disk check"
 msgstr "Comprobación de disco"
 
 #: HddPartitions.py:162
-#, fuzzy, python-format
+#, python-format
 msgid "Formatting disk %s"
 msgstr "Formateando disco %s"
 
 #: HddPartitions.py:163
-#, fuzzy
 msgid "Disk format"
 msgstr "Formato Disco"
 
 #: HddPartitions.py:165
-#, fuzzy
 msgid "Please select a file system for the partition"
 msgstr "Seleccione un sistema de archivos para la partición"
 
@@ -323,7 +297,7 @@ msgid "Partition {0} - {1} (fast mounted: {2})"
 msgstr "Partición {0} - {1} (montaje rápido: {2})"
 
 #: HddPartitions.py:181
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Partition {0} - {1}"
 msgstr "Partición {0} - {1}"
 
@@ -344,22 +318,20 @@ msgid "Initialization of fixed mounted drives require a system restart. "
 msgstr "El formateo de unidades montadas fijas requiere un reinicio del sistema. "
 
 #: HddSetup.py:122
-#, fuzzy, python-format
+#, python-format
 msgid "Formatting partition %d failed!"
 msgstr "Formateando partición %d fallido!"
 
 #: HddSetup.py:144
-#, fuzzy, python-format
+#, python-format
 msgid "Formatting partition %d"
 msgstr "Formateando partición %d"
 
 #: HddSetup.py:145
-#, fuzzy
 msgid "Disk initialization"
 msgstr "Inicializar disco"
 
 #: HddSetup.py:156
-#, fuzzy
 msgid "Partitioning failed!"
 msgstr "Particionamiento fallido!"
 
@@ -368,27 +340,22 @@ msgid "Partitioning..."
 msgstr "Particionando..."
 
 #: HddSetup.py:169
-#, fuzzy
 msgid "Initialize disk"
 msgstr "Inicializar disco"
 
 #: HddSetup.py:177
-#, fuzzy
 msgid "Please select a file system for the drive"
 msgstr "Seleccione un sistema de archivos para la unidad"
 
 #: HddSetup.py:182
-#, fuzzy
 msgid "One partition"
 msgstr "Una partición"
 
 #: HddSetup.py:183 HddSetup.py:184
-#, fuzzy
 msgid "Two partitions"
 msgstr "Dos particiones"
 
 #: HddSetup.py:185
-#, fuzzy
 msgid "Three partitions"
 msgstr "Tres particiones"
 
@@ -397,7 +364,6 @@ msgid "Four partitions"
 msgstr "Cuatro particiones"
 
 #: HddSetup.py:187
-#, fuzzy
 msgid "Please select your preferred configuration"
 msgstr "Por favor seleccione su configuración preferida"
 
@@ -410,7 +376,6 @@ msgid "yes"
 msgstr "sí"
 
 #: HddSetup.py:199
-#, fuzzy
 msgid "Initialize as hard disk?"
 msgstr "Formatear como disco duro?"
 
